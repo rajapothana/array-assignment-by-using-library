@@ -82,4 +82,17 @@ assert.deepEqual(lib.countOddNumbers([2]),0)
 assert.deepEqual(lib.countOddNumbers([4,3,2]),1)
 assert.deepEqual(lib.countOddNumbers([4,3,2,7,4,2,5]),3)
 
+
+//..............countNumbersAboveAThreshold.............//
+assert.deepEqual(lib.countNumbersAbove([6,4,5],4),2)
+assert.deepEqual(lib.countNumbersAbove([4,2,9,8,77,1],5),3)
+assert.deepEqual(lib.countNumbersAbove([9,5,-6,7,-8],2),3)
+assert.deepEqual(lib.countNumbersAbove([6,0,-77,44],0),2)
+
+//..............countNumbersBelowAThreshold.............//
+assert.deepEqual(lib.countNumbersBelow([6,4,5],5),1)
+assert.deepEqual(lib.countNumbersBelow([4,2,9,8,77,1],8),3)
+assert.deepEqual(lib.countNumbersBelow([9,5,-6,7,-8],2),2)
+assert.deepEqual(lib.countNumbersBelow([6,0,-77,44],0),1)
+
 console.log("...........test passed...........");

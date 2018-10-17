@@ -130,6 +130,28 @@ const  countOddNumbers = function (source){
   }
   return count;
 }
+//..........countNumbersAboveAThreshold.............//
+const countNumbersAbove = function(source,threshold){
+  let count = 0;
+  for(let index = 0;index < source.length; index++){
+    if(source[index] > threshold){
+      count = count + 1;
+    }
+  }
+  return count;
+}
+
+//..........countNumbersBelowAThreshold.............//
+const countNumbersBelow = function(source,threshold){
+  let count = 0;
+  for(let index = 0;index < source.length; index++){
+    if(source[index] < threshold){
+      count = count + 1;
+    }
+  }
+  return count;
+}
+
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
 exports.addNumbers = addNumbers;
@@ -142,4 +164,6 @@ exports.calculateAverage = calculateAverage;
 exports.mapLength = mapLength;
 exports.countEvenNumbers = countEvenNumbers;
 exports.countOddNumbers = countOddNumbers;
+exports.countNumbersAbove = countNumbersAbove;
+exports.countNumbersBelow = countNumbersBelow;
 
