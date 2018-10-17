@@ -93,6 +93,6 @@ assert.deepEqual(lib.countNumbersAbove([6,0,-77,44],0),2)
 assert.deepEqual(lib.countNumbersBelow([6,4,5],5),1)
 assert.deepEqual(lib.countNumbersBelow([4,2,9,8,77,1],8),3)
 assert.deepEqual(lib.countNumbersBelow([9,5,-6,7,-8],2),2)
-assert.deepEqual(lib.countNumbersBelow([-5,0,-77,44],0),1)
+assert.deepEqual(lib.countNumbersBelow([-5,0,-77,44],0),2)
 
 console.log("...........test passed...........");
