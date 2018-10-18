@@ -152,6 +152,54 @@ const countNumbersBelow = function(source,threshold){
   return count;
 }
 
+//...............indexOfANumber................//
+const findIndex = function(source,specifiedNumber){
+  for(let index = 0; index < source.length; index++){
+    if(source[index] == specifiedNumber){
+      return index;
+    }
+  }
+}
+
+//..............checkingAscendingOrder..............//
+const isAscendingOrder = function(source){ 
+  for(let index = 0; index < source.length; index++){
+    if(source[index] > source[index + 1]){
+      return false;
+    }
+  }
+  return true;
+}
+
+
+//..............checkingDescendingOrder..............//
+const isDescendingOrder = function(source){ 
+  for(let index = 0; index < source.length; index++){
+    if(source[index] < source[index + 1]){
+      return false;
+    }
+  }
+  return true;
+}
+
+//...........extractingDigitsFromANumber.............//
+const extractDigits = function(number) {
+  let string = ""+number;
+  let extractedNumbers = [];
+  for(let index = 0; index < string.length; index++) {
+    extractedNumbers.push(string[index]);
+  }
+  return extractedNumbers;
+}
+
+//............uniqueNumbers..............//
+const generateUniqueNumbers = function(source){
+  let object = {};
+  for(let numbers of source){
+    object[numbers] = "unique";
+  }
+ return Object.keys(object);
+}
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
 exports.addNumbers = addNumbers;
@@ -166,4 +214,8 @@ exports.countEvenNumbers = countEvenNumbers;
 exports.countOddNumbers = countOddNumbers;
 exports.countNumbersAbove = countNumbersAbove;
 exports.countNumbersBelow = countNumbersBelow;
-
+exports.findIndex = findIndex;
+exports.isAscendingOrder = isAscendingOrder;
+exports.isDescendingOrder = isDescendingOrder;
+exports.extractDigits = extractDigits;
+exports.generateUniqueNumbers = generateUniqueNumbers;

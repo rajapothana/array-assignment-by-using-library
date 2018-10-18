@@ -95,4 +95,37 @@ assert.deepEqual(lib.countNumbersBelow([4,2,9,8,77,1],8),3)
 assert.deepEqual(lib.countNumbersBelow([9,5,-6,7,-8],2),2)
 assert.deepEqual(lib.countNumbersBelow([-5,0,-77,44],0),2)
 
+//.............findIndexOfANumber...............//
+assert.deepEqual(lib.findIndex([6,4,5],5),2)
+assert.deepEqual(lib.findIndex([4,2,9,8,77,1],8),3)
+assert.deepEqual(lib.findIndex([9,5,-6,7,-8],-8),4)
+assert.deepEqual(lib.findIndex([9,5,-6,7,-8],9),0)
+
+//.............checkingAscendingOrder..........//
+assert.deepEqual(lib.isAscendingOrder([0]),true)
+assert.deepEqual(lib.isAscendingOrder([1,2,3]),true)
+assert.deepEqual(lib.isAscendingOrder([-1,-2,-3]),false)
+assert.deepEqual(lib.isAscendingOrder([7,12,30,45,222,-33333]),false)
+
+//.............checkingDescendingOrder..........//
+assert.deepEqual(lib.isDescendingOrder([0]),true)
+assert.deepEqual(lib.isDescendingOrder([1,2,3]),false)
+assert.deepEqual(lib.isDescendingOrder([-1,-2,-3]),true)
+assert.deepEqual(lib.isDescendingOrder([2,3,1,4,87]),false)
+
+//.............extractingDigitsFromANumber............//
+assert.deepEqual(lib.extractDigits(10),[1,0])
+assert.deepEqual(lib.extractDigits(748),[7,4,8])
+assert.deepEqual(lib.extractDigits(57932),[5,7,9,3,2])
+assert.deepEqual(lib.extractDigits(749325992),[7,4,9,3,2,5,9,9,2])
+
+//...........uniqueNumbers.............//
+assert.deepEqual(lib.generateUniqueNumbers([1]),[1])
+assert.deepEqual(lib.generateUniqueNumbers([7,4,4]),[4,7])
+assert.deepEqual(lib.generateUniqueNumbers
+  ([5,7,7,9,3,3]),[5,7,9,3])
+assert.deepEqual(lib.generateUniqueNumbers([7,4,4,9,3,2,9]),[7,4,9,3,2])
+
+
 console.log("...........test passed...........");
+
