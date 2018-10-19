@@ -245,6 +245,19 @@ const getDifference = function(source1,source2){
   return diffArray;
 }
 
+//.............isSubset..............//
+const checkSubset = function(array1,array2){
+  for(let index = 0; index < array2.length; index++){
+    if(! array1.includes(array2[index])){
+      return false;
+    }
+  }
+  return true;
+}
+
+
+
+
 
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
@@ -268,3 +281,5 @@ exports.generateUniqueElements = generateUniqueElements;
 exports.generateUnionElements = generateUnionElements;
 exports.generateIntersectionOfElements = generateIntersectionOfElements;
 exports.getDifference = getDifference;
+exports.checkSubset = checkSubset;
+
