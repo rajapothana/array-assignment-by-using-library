@@ -194,12 +194,16 @@ const extractDigits = function(number) {
 
 //............uniqueNumbers..............//
 const generateUniqueNumbers = function(source){
-  let object = {};
-  for(let numbers of source){
-    object[numbers] = "unique";
+let uniqueNumbers = [];
+  uniqueNumbers.push(source[0]);
+  for(let index = 1; index < source.length; index++){
+    if(! uniqueNumbers.includes(source[index])){
+      uniqueNumbers.push(source[index]);
+    }
   }
- return Object.keys(object);
+  return uniqueNumbers;
 }
+
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
 exports.addNumbers = addNumbers;

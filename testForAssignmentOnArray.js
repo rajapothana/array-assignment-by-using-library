@@ -121,7 +121,7 @@ assert.deepEqual(lib.extractDigits(749325992),[7,4,9,3,2,5,9,9,2])
 
 //...........uniqueNumbers.............//
 assert.deepEqual(lib.generateUniqueNumbers([1]),[1])
-assert.deepEqual(lib.generateUniqueNumbers([7,4,4]),[4,7])
+assert.deepEqual(lib.generateUniqueNumbers([7,4,4]),[7,4])
 assert.deepEqual(lib.generateUniqueNumbers
   ([5,7,7,9,3,3]),[5,7,9,3])
 assert.deepEqual(lib.generateUniqueNumbers([7,4,4,9,3,2,9]),[7,4,9,3,2])
