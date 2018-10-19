@@ -1,23 +1,26 @@
 const assert = require("assert");
 const lib = require("./assignmentOnArray.js");
 
+let {extractOddNumbers} = require('./assignmentOnArray.js');
+
+
 //..finding oddNumbers,evenNumbers,addNumbers,alternateElement........//
-assert.deepEqual(lib.extractOddNumbers([]),[]);          //emptyArray
+assert.deepEqual(extractOddNumbers([]),[]);          //emptyArray
 assert.deepEqual(lib.extractEvenNumbers([]),[]);          
 assert.deepEqual(lib.addNumbers([]),0)
 assert.deepEqual(lib.alternateElements([]),[]);
 
-assert.deepEqual(lib.extractOddNumbers([3]),[3]);          //onePositiveNumber
+assert.deepEqual(extractOddNumbers([3]),[3]);          //onePositiveNumber
 assert.deepEqual(lib.extractEvenNumbers([8]),[8]);          
 assert.deepEqual(lib.addNumbers([6]),6)
 assert.deepEqual(lib.alternateElements([1]),[1]);
 
-assert.deepEqual(lib.extractOddNumbers([-3]),[-3]);          //oneNegativeNumber
+assert.deepEqual(extractOddNumbers([-3]),[-3]);          //oneNegativeNumber
 assert.deepEqual(lib.extractEvenNumbers([-8]),[-8]);          
 assert.deepEqual(lib.addNumbers([5]),5)
 assert.deepEqual(lib.alternateElements([-7]),[-7]);
 
-assert.deepEqual(lib.extractOddNumbers([5,2]),[5]);          //twoNumbers
+assert.deepEqual(extractOddNumbers([5,2]),[5]);          //twoNumbers
 assert.deepEqual(lib.extractEvenNumbers([3,4]),[4]);          
 assert.deepEqual(lib.addNumbers([5,9]),14)
 assert.deepEqual(lib.alternateElements([5,7]),[5]);
@@ -156,6 +159,12 @@ assert.deepEqual(lib.checkSubset([-1,2,-2],[-1,-2]),true)
 assert.deepEqual(lib.checkSubset([4,7,3,1,9],[8,6,9,3]),false)
 assert.deepEqual(lib.checkSubset([5,3,6,7,8,2],[2,8,7,3]),true)
 
+//..........zip..............//
+assert.deepEqual(lib.generateZipArray([1,2],[3,4]),[[1,3],[2,4]])
+assert.deepEqual(lib.generateZipArray([1,2],[1]),[[1,1]])
+assert.deepEqual(lib.generateZipArray([3,5,2],[2,1,4,6]),[[3,2],[5,1],[2,4]])
+assert.deepEqual(lib.generateZipArray([-3,4,6,3],[4,5,2,6,8]),[[-3,4],[4,5],[6,2],[3,6]])
+assert.deepEqual(lib.generateZipArray([9,4,5,2],[1,3,2,4]),[[9,1],[4,3],[5,2],[2,4]])
 
 console.log("...........test passed...........");
 

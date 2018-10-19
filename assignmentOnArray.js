@@ -255,8 +255,24 @@ const checkSubset = function(array1,array2){
   return true;
 }
 
+//............zip................//
+const findSmallerArray = function(array1,array2){
+  if(array1.length <= array2.length) {
+    return array1;
+  }
+  return array2;
+}
 
-
+const generateZipArray = function(array1,array2){
+  let zippedArray = [];
+  smallArray = findSmallerArray(array1,array2);
+  for (let index = 0; index < smallArray.length; index++) {
+    zippedArray[index] = [];
+    zippedArray[index][0] = array1[index];
+    zippedArray[index][1] = array2[index];
+  }
+  return zippedArray;
+}
 
 
 exports.extractOddNumbers = extractOddNumbers;
@@ -282,4 +298,5 @@ exports.generateUnionElements = generateUnionElements;
 exports.generateIntersectionOfElements = generateIntersectionOfElements;
 exports.getDifference = getDifference;
 exports.checkSubset = checkSubset;
+exports.generateZipArray = generateZipArray;
 
