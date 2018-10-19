@@ -215,8 +215,20 @@ const generateUnionElements = function(source1,source2){
   return unionElements;
 }
 
-
-
+//..........intersectionOfElements.........//
+const generateIntersectionOfElements = function(source1,source2){
+  let intersectionOfElements = [];
+  let uniqueSource1 = generateUniqueElements(source1); 
+  let uniqueSource2 = generateUniqueElements(source2); 
+  for(let index1 = 0; index1 < uniqueSource1.length; index1++){
+    for(let index2 = 0; index2 < uniqueSource2.length; index2++){
+      if(uniqueSource1[index1] == uniqueSource2[index2]){
+        intersectionOfElements.push(uniqueSource1[index1]);
+      }
+    }
+  }
+  return intersectionOfElements;
+}
 
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
@@ -238,3 +250,4 @@ exports.isDescendingOrder = isDescendingOrder;
 exports.extractDigits = extractDigits;
 exports.generateUniqueElements = generateUniqueElements;
 exports.generateUnionElements = generateUnionElements;
+exports.generateIntersectionOfElements = generateIntersectionOfElements;

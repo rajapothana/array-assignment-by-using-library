@@ -134,5 +134,12 @@ assert.deepEqual(lib.generateUnionElements([-1,7],[4,7]),[-1,7,4])
 assert.deepEqual(lib.generateUnionElements([-1,7,-2],[-2,4,7]),[-1,7,-2,4])
 assert.deepEqual(lib.generateUnionElements
   ([5,7,7,9],[1,3,3]),[5,7,9,1,3])
+
+//..........intersectionOfElements.............//
+assert.deepEqual(lib.generateIntersectionOfElements([1],[2]),[])
+assert.deepEqual(lib.generateIntersectionOfElements([3],[3]),[3])
+assert.deepEqual(lib.generateIntersectionOfElements([1,4],[2,4]),[4])
+assert.deepEqual(lib.generateIntersectionOfElements([7,4,23,5,7],[4,5,7,8,9]),[7,4,5])
+assert.deepEqual(lib.generateIntersectionOfElements([1,4,2,5,6],[2,5,56,7,8,3,1]),[1,2,5])
 console.log("...........test passed...........");
 
