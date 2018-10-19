@@ -98,13 +98,13 @@ const calculateAverage = function(numbers){
 
 //...............mappingLength...............//
 const mapLength = function(source){
- let  mappedLengths = [];
+  let  mappedLengths = [];
   for(let index = 0;index < source.length;index++){
     mappedLengths.push(source[index].length);
   }
   return mappedLengths;
 }
-  
+
 //.............countEvenNumbers..............//
 const  countEvenNumbers = function (source){
   let count = 0;
@@ -194,7 +194,7 @@ const extractDigits = function(number) {
 
 //............uniqueElements..............//
 const generateUniqueElements = function(source){
-let uniqueElements = [];
+  let uniqueElements = [];
   uniqueElements.push(source[0]);
   for(let index = 1; index < source.length; index++){
     if(! uniqueElements.includes(source[index])){
@@ -206,7 +206,7 @@ let uniqueElements = [];
 
 //..........unionOfElements.............//
 const generateUnionElements = function(source1,source2){
- let  unionElements = generateUniqueElements(source1);
+  let  unionElements = generateUniqueElements(source1);
   for (let index = 0; index < source2.length;index++){
     if(! unionElements.includes(source2[index])){
       unionElements.push(source2[index]);
@@ -274,30 +274,28 @@ const generateZipArray = function(array1,array2){
   return zippedArray;
 }
 
-//...............rotate.................//
-const rotateElements = function(array,limit){
-  for(let index = 0; index < limit; index++){
+//..............partitionOfNumbers...............//
+const partitionOfNumbers = function(array,number){
+  let partitionedArray = [[],[]];
+  for (let index = 0;index < array.length;index++){
+    partitionedArray[1].push(array[index]);
+    if(array[index] <= number){
+      partitionedArray[0].push(array[index]);
+      partitionedArray[1].pop(array[index]);
+    }
+  }
+  return partitionedArray;
+}
+
+//............rotateNumbers................//
+const rotateArray = function(array,limit){
+  for (let index = 0;index < limit;index++){
     array.push(array.shift());
   }
   return array;
 }
 
-//..................partitionOfNumbers....................//
-const partitionOfNumbers = function(array,threshold){
-  let belowThreshold = [];
-  let aboveThreshold = [];
-  let partitionedArray = [];
-  for (let index = 0; index < array.length; index++){
-    if(array[index] <= threshold){
-      belowThreshold.push(array[index]);
-    }else{
-      aboveThreshold.push(array[index]);
-    }
-  }
-  partitionedArray.push(belowThreshold,aboveThreshold);
-  return partitionedArray
-}
-
+exports.rotateArray=rotateArray;
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
 exports.addNumbers = addNumbers;
@@ -322,5 +320,5 @@ exports.generateIntersectionOfElements = generateIntersectionOfElements;
 exports.getDifference = getDifference;
 exports.checkSubset = checkSubset;
 exports.generateZipArray = generateZipArray;
-exports.rotateElements = rotateElements;
-exports.partitionOfNumbers = partitionOfNumbers;
+exports.rotateArray = rotateArray;
+exports.partitionOfNumbers=partitionOfNumbers;
