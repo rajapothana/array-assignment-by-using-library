@@ -140,6 +140,18 @@ assert.deepEqual(lib.generateIntersectionOfElements([1],[2]),[])
 assert.deepEqual(lib.generateIntersectionOfElements([3],[3]),[3])
 assert.deepEqual(lib.generateIntersectionOfElements([1,4],[2,4]),[4])
 assert.deepEqual(lib.generateIntersectionOfElements([7,4,23,5,7],[4,5,7,8,9]),[7,4,5])
-assert.deepEqual(lib.generateIntersectionOfElements([1,4,2,5,6],[2,5,56,7,8,3,1]),[1,2,5])
+assert.deepEqual(lib.generateIntersectionOfElements([1,4,2,5,6],[2,4,1,6,9]),[1,4,2,6])
+
+//...............difference...............//
+assert.deepEqual(lib.getDifference([1,2],[1]),[2])
+assert.deepEqual(lib.getDifference([1,2,4],[2,3,5]),[1,4])
+assert.deepEqual(lib.getDifference([3,4,5,1,6],[5,3,2,6,5]),[4,1])
+assert.deepEqual(lib.getDifference([-1,0,3,2,4],[1,0,5,3]),[-1,2,4])
+assert.deepEqual(lib.getDifference([9,4,2,2,5],[7,3,4,32,4]),[9,2,2,5])
+
+
+
+
+
 console.log("...........test passed...........");
 

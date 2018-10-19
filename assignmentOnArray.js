@@ -230,6 +230,22 @@ const generateIntersectionOfElements = function(source1,source2){
   return intersectionOfElements;
 }
 
+//................difference..............//
+const getDifference = function(source1,source2){
+  let diffArray = [];
+  let count = 0;
+  isDifferent = "";
+  for(let index = 0; index < source1.length; index++){
+    isDifference = !source2.includes(source1[index]);
+    if(isDifference){
+      diffArray[count] = source1[index];
+      count++;
+    }
+  }
+  return diffArray;
+}
+
+
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
 exports.addNumbers = addNumbers;
@@ -251,3 +267,4 @@ exports.extractDigits = extractDigits;
 exports.generateUniqueElements = generateUniqueElements;
 exports.generateUnionElements = generateUnionElements;
 exports.generateIntersectionOfElements = generateIntersectionOfElements;
+exports.getDifference = getDifference;
