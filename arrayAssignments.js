@@ -282,6 +282,22 @@ const rotateElements = function(array,limit){
   return array;
 }
 
+//..................partitionOfNumbers....................//
+const partitionOfNumbers = function(array,threshold){
+  let belowThreshold = [];
+  let aboveThreshold = [];
+  let partitionedArray = [];
+  for (let index = 0; index < array.length; index++){
+    if(array[index] <= threshold){
+      belowThreshold.push(array[index]);
+    }else{
+      aboveThreshold.push(array[index]);
+    }
+  }
+  partitionedArray.push(belowThreshold,aboveThreshold);
+  return partitionedArray
+}
+
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
 exports.addNumbers = addNumbers;
@@ -307,4 +323,4 @@ exports.getDifference = getDifference;
 exports.checkSubset = checkSubset;
 exports.generateZipArray = generateZipArray;
 exports.rotateElements = rotateElements;
-exports.partitionOfElements = partitionOfElements;
+exports.partitionOfNumbers = partitionOfNumbers;

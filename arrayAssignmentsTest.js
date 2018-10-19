@@ -172,7 +172,11 @@ assert.deepEqual(lib.rotateElements([1,2,8],2),[8,1,2])
 assert.deepEqual(lib.rotateElements([-2,4,-5,-66],1),[4,-5,-66,-2])
 assert.deepEqual(lib.rotateElements([5,3,6,34,5],3),[34,5,5,3,6])
 
-
+//...............partitionOfNumbers................//
+assert.deepEqual(lib.partitionOfNumbers([1,2,3,4],2),[[1,2],[3,4]])
+assert.deepEqual(lib.partitionOfNumbers([3,1,3,4,5,6],7),[[3,1,3,4,5,6],[]])
+assert.deepEqual(lib.partitionOfNumbers([1,2,7,4,9,10,5],5),[[1,2,4,5],[7,9,10]])
+assert.deepEqual(lib.partitionOfNumbers([-1,-5,-3,-6,-3],-2),[[-5,-3,-6,-3],[-1]])
 
 
 console.log("...........test passed...........");
