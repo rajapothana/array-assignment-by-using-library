@@ -192,17 +192,31 @@ const extractDigits = function(number) {
   return extractedNumbers;
 }
 
-//............uniqueNumbers..............//
-const generateUniqueNumbers = function(source){
-let uniqueNumbers = [];
-  uniqueNumbers.push(source[0]);
+//............uniqueElements..............//
+const generateUniqueElements = function(source){
+let uniqueElements = [];
+  uniqueElements.push(source[0]);
   for(let index = 1; index < source.length; index++){
-    if(! uniqueNumbers.includes(source[index])){
-      uniqueNumbers.push(source[index]);
+    if(! uniqueElements.includes(source[index])){
+      uniqueElements.push(source[index]);
     }
   }
-  return uniqueNumbers;
+  return uniqueElements;
 }
+
+//..........unionOfElements.............//
+const generateUnionElements = function(source1,source2){
+ let  unionElements = generateUniqueElements(source1);
+  for (let index = 0; index < source2.length;index++){
+    if(! unionElements.includes(source2[index])){
+      unionElements.push(source2[index]);
+    }
+  }
+  return unionElements;
+}
+
+
+
 
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
@@ -222,4 +236,5 @@ exports.findIndex = findIndex;
 exports.isAscendingOrder = isAscendingOrder;
 exports.isDescendingOrder = isDescendingOrder;
 exports.extractDigits = extractDigits;
-exports.generateUniqueNumbers = generateUniqueNumbers;
+exports.generateUniqueElements = generateUniqueElements;
+exports.generateUnionElements = generateUnionElements;

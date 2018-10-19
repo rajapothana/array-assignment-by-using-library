@@ -119,13 +119,20 @@ assert.deepEqual(lib.extractDigits(748),[7,4,8])
 assert.deepEqual(lib.extractDigits(57932),[5,7,9,3,2])
 assert.deepEqual(lib.extractDigits(749325992),[7,4,9,3,2,5,9,9,2])
 
-//...........uniqueNumbers.............//
-assert.deepEqual(lib.generateUniqueNumbers([1]),[1])
-assert.deepEqual(lib.generateUniqueNumbers([7,4,4]),[7,4])
-assert.deepEqual(lib.generateUniqueNumbers
+//...........uniqueElements.............//
+assert.deepEqual(lib.generateUniqueElements([1]),[1])
+assert.deepEqual(lib.generateUniqueElements([7,4,4]),[7,4])
+assert.deepEqual(lib.generateUniqueElements
   ([5,7,7,9,3,3]),[5,7,9,3])
-assert.deepEqual(lib.generateUniqueNumbers([7,4,4,9,3,2,9]),[7,4,9,3,2])
+assert.deepEqual(lib.generateUniqueElements([7,4,4,9,3,2,9]),[7,4,9,3,2])
 
 
+//...........unionElements.............//
+assert.deepEqual(lib.generateUnionElements([],[]),[undefined])
+assert.deepEqual(lib.generateUnionElements([7],[4]),[7,4])
+assert.deepEqual(lib.generateUnionElements([-1,7],[4,7]),[-1,7,4])
+assert.deepEqual(lib.generateUnionElements([-1,7,-2],[-2,4,7]),[-1,7,-2,4])
+assert.deepEqual(lib.generateUnionElements
+  ([5,7,7,9],[1,3,3]),[5,7,9,1,3])
 console.log("...........test passed...........");
 
