@@ -1,52 +1,81 @@
 const assert = require("assert");
 const library = require("./arrayAssignmentsLibrary.js");
 
-let {rotateSource,extractOddNumbers,extractEvenNumbers,addNumbers,alternateNumbers,reversedNumbers,reversedFibonacciSeries,findGreatestNumber,findSmallestNumber,calculateAverage,mapLength,countEvenNumbers,countOddNumbers,countNumbersAbove,countNumbersBelow,findIndex,isAscendingOrder,isDescendingOrder,extractDigits,extractUniqueElements,unionOfElements,intersectionOfElements,findDifference,checkSubset,generateZipArray,partitionOfArray} = library; 
+let {rotateSource,extractOddNumbers,extractEvenNumbers,addNumbers,extractAlternateNumbers,reverseArray,reversedFibonacciSeries,findGreatestNumber,findSmallestNumber,calculateAverage,mapLength,countEvenNumbers,countOddNumbers,countNumbersAbove,countNumbersBelow,findIndex,isAscendingOrder,isDescendingOrder,extractDigits,extractUniqueElements,unionOfElements,intersectionOfElements,findDifference,checkSubset,generateZipArray,partitionOfArray} = library; 
 
 //.....................finding oddNumbers.................//
 assert.deepEqual(extractOddNumbers([]),[]);          //emptyArray
-assert.deepEqual(extractOddNumbers([3]),[3]);          //onePositiveNumber
-assert.deepEqual(extractOddNumbers([-3]),[-3]);          //oneNegativeNumber
-assert.deepEqual(extractOddNumbers([5,2]),[5]);          //twoNumbers
-assert.deepEqual(extractOddNumbers([5,2,6,7]),[5,7]);          //moreThenTwo
+assert.deepEqual(extractOddNumbers([0]),[]);          //one zero
+assert.deepEqual(extractOddNumbers([3]),[3]);          //oneOddNumber
+assert.deepEqual(extractOddNumbers([8]),[]);          //oneEvenNumber
+assert.deepEqual(extractOddNumbers([4,7]),[7]);          //oneOdd,oneEven
+assert.deepEqual(extractOddNumbers([-5,2]),[-5]);          //oneNegative,onePositive
+assert.deepEqual(extractOddNumbers([5,2,6,7]),[5,7]);          //twoEven,twoOdd
+assert.deepEqual(extractOddNumbers([8,0,5,3]),[5,3]);          //with zero
+assert.deepEqual(extractOddNumbers([4,21,-5,-32]),[21,-5]);          //twoPositive,twoNegative
+// only odd
+// only negative odd
+// one odd, one even
+// only even -- missing
+// with zeros
+// arrays are ordered. knowing that, what test cases are you missing?
+// two odd, two even 
+
 
 //.............findingEvenNumbers.............//
 assert.deepEqual(extractEvenNumbers([]),[]);          
+assert.deepEqual(extractEvenNumbers([0]),[0]);         
 assert.deepEqual(extractEvenNumbers([8]),[8]);          
-assert.deepEqual(extractEvenNumbers([-8]),[-8]);          
+assert.deepEqual(extractEvenNumbers([-4]),[-4]);          
 assert.deepEqual(extractEvenNumbers([3,4]),[4]);          
-assert.deepEqual(extractEvenNumbers([3,4,7,8,5]),[4,8]);          
+assert.deepEqual(extractEvenNumbers([-5,2]),[2]);      
+assert.deepEqual(extractEvenNumbers([5,2,6,7]),[2,6]);  
+assert.deepEqual(extractEvenNumbers([8,0,5,3]),[8,0]); 
+assert.deepEqual(extractEvenNumbers([4,21,-5,-32]),[4,-32]); 
 
 //..............sumOfNumbers.................//
 assert.deepEqual(addNumbers([]),0)
-assert.deepEqual(addNumbers([6]),6)
-assert.deepEqual(addNumbers([5]),5)
-assert.deepEqual(addNumbers([5,9]),14)
-assert.deepEqual(addNumbers([5,9,7,4,7]),32)
+assert.deepEqual(addNumbers([0]),0)
+assert.deepEqual(addNumbers([1]),1)
+assert.deepEqual(addNumbers([6,7]),13)
+assert.deepEqual(addNumbers([5,-3]),2)
+assert.deepEqual(addNumbers([5,9,-4]),10)
+assert.deepEqual(addNumbers([3,7,-8,-9]),-7)
+assert.deepEqual(addNumbers([5,19,12,-11]),25)
+assert.deepEqual(addNumbers([9.5,8,7]),24.5)
+assert.deepEqual(addNumbers([9,8.2,5,-6.2,1]),17)
 
-//...............extractAlternateElements...................//
-assert.deepEqual(alternateNumbers([]),[]);
-assert.deepEqual(alternateNumbers([1]),[1]);
-assert.deepEqual(alternateNumbers([-7]),[-7]);
-assert.deepEqual(alternateNumbers([5,7]),[5]);
-assert.deepEqual(alternateNumbers([5,7,8,3,7,9]),[5,8,7]);
+//...............extractAlternateElements...................// 
+assert.deepEqual(extractAlternateNumbers([]),[]); // where is the word extract in the function? 
+assert.deepEqual(extractAlternateNumbers([1]),[1]);
+assert.deepEqual(extractAlternateNumbers([0,1]),[0]);
+assert.deepEqual(extractAlternateNumbers([-7,8]),[-7]);
+assert.deepEqual(extractAlternateNumbers([5,7]),[5]);
+assert.deepEqual(extractAlternateNumbers([9,4,-1]),[9,-1]);
+assert.deepEqual(extractAlternateNumbers([3,1,-7,0]),[3,-7]);
+assert.deepEqual(extractAlternateNumbers([5,7,8,3,7]),[5,8,7]); // how did you decide the number of elements here?
 
 //..........generate reverse numbers.....................//
-assert.deepEqual(reversedNumbers([]),[]);         
-assert.deepEqual(reversedNumbers([3]),[3]);       
-assert.deepEqual(reversedNumbers([-3]),[-3]);     
-assert.deepEqual(reversedNumbers([5,2]),[2,5]);          
-assert.deepEqual(reversedNumbers([9,5,2,6,7]),[7,6,2,5,9]);
+assert.deepEqual(reverseArray([]),[]); // reversedNumbers is not a verb
+assert.deepEqual(reverseArray([0]),[0]);
+assert.deepEqual(reverseArray([8,-3]),[-3,8]);
+assert.deepEqual(reverseArray([8,9,-2]),[-2,9,8]);       
+assert.deepEqual(reverseArray([0,3,-10]),[-10,3,0]);     
+assert.deepEqual(reverseArray([5,2,21,33]),[33,21,2,5]);          
+assert.deepEqual(reverseArray([9,-5,-2,6,-7]),[-7,6,-2,-5,9]); // similarly here
 
 
 //.................reverse fibonacci series............//
 assert.deepEqual(reversedFibonacciSeries(0),[]);         
 assert.deepEqual(reversedFibonacciSeries(1),[0]);       
+assert.deepEqual(reversedFibonacciSeries(2),[1,0]);       
 assert.deepEqual(reversedFibonacciSeries(3),[1,1,0]);         
+assert.deepEqual(reversedFibonacciSeries(4),[2,1,1,0]);         
 assert.deepEqual(reversedFibonacciSeries(5),[3,2,1,1,0]);    
 assert.deepEqual(reversedFibonacciSeries(7),[8,5,3,2,1,1,0]);    
+assert.deepEqual(reversedFibonacciSeries(9),[21,13,8,5,3,2,1,1,0]);    
 
-//........findGreatest number in a list...........//
+//........findGreatest number in a list...........// // what about empty array?
 assert.deepEqual(findGreatestNumber([5]),5);
 assert.deepEqual(findGreatestNumber([7,3]),7);
 assert.deepEqual(findGreatestNumber([9,4,5,2]),9);
@@ -67,7 +96,7 @@ assert.deepEqual(calculateAverage([9,4,5,6]),6);
 assert.deepEqual(calculateAverage([54,-43,7,-54,66]),6);
 assert.deepEqual(calculateAverage([9,4,76,47,1,83]),36.666666666666664);
 
-//...............mapping length...............//
+//...............mapping length...............// // empty array
 assert.deepEqual(mapLength(["a"]),[1])
 assert.deepEqual(mapLength(["prasad"]),[6])
 assert.deepEqual(mapLength(["sachin","rohit"]),[6,5])

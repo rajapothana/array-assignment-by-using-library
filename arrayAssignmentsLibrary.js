@@ -2,6 +2,10 @@ const isEven = function(number) {
   return (number % 2 == 0);
 }
 
+// extractEvenNumbers and extractOddNumbers have lot of duplication. create a new function that reduces that duplication. 
+// that does not mean ywo have only 1 function. it means you have 3 functions. but no duplication. 
+// first you can use if-else. then you'll get rid of them. 
+
 //..............findingEvenNumbers..............//
 const extractEvenNumbers = function(numbers) { 
   let evenNumbers = [];
@@ -45,7 +49,7 @@ const extractAlternateNumbers = function(numbers) {
 }
 
 //..............reversingNumbers..............//
-const reverseNumbers = function(numbers) { 
+const reverseArray = function(numbers) { 
   let reversedNumbers = [];
   for(let index = numbers.length-1; index >= 0; index--) {
     reversedNumbers.push(numbers[index]);
@@ -70,7 +74,7 @@ const generateFibonacciSeries = function(limit){
 
 const reverseFibonacciSeries = function(limit){
   fibonacciSeries = generateFibonacciSeries(limit)
-  return reverseNumbers(fibonacciSeries);
+  return reverseArray(fibonacciSeries);
 }
 
   //..........greatestNumberInAList...............//
@@ -296,8 +300,8 @@ exports.rotateSource=rotateSource;
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
 exports.addNumbers = addNumbers;
-exports.alternateNumbers = extractAlternateNumbers;
-exports.reversedNumbers = reverseNumbers;
+exports.extractAlternateNumbers = extractAlternateNumbers;
+exports.reverseArray = reverseArray;
 exports.reversedFibonacciSeries = reverseFibonacciSeries;
 exports.findGreatestNumber = findGreatestNumber;
 exports.findSmallestNumber = findSmallestNumber;
