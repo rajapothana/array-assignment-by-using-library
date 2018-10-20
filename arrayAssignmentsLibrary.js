@@ -285,14 +285,14 @@ const partitionOfArray = function(array,number){
 }
 
 //............rotateNumbers................//
-const rotateArray = function(array,limit){
+const rotateSource = function(source,limit){
   for (let index = 0;index < limit;index++){
-    array.push(array.shift());
+    source.push(source.shift());
   }
-  return array;
+  return source;
 }
 
-exports.rotateArray=rotateArray;
+exports.rotateSource=rotateSource;
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
 exports.addNumbers = addNumbers;
@@ -317,5 +317,5 @@ exports.extractIntersectionOfElements = extractIntersectionOfElements;
 exports.getDifference = getDifference;
 exports.checkSubset = checkSubset;
 exports.generateZipArray = generateZipArray;
-exports.rotateArray = rotateArray;
+exports.rotateSource = rotateSource;
 exports.partitionOfArray = partitionOfArray;

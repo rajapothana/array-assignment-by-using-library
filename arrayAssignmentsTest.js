@@ -1,7 +1,7 @@
 const assert = require("assert");
 const library = require("./arrayAssignmentsLibrary.js");
 
-let {rotateArray,extractOddNumbers,extractEvenNumbers,addNumbers,alternateNumbers,reversedNumbers,reversedFibonacciSeries,findGreatestNumber,findSmallestNumber,calculateAverage,mapLength,countEvenNumbers,countOddNumbers,countNumbersAbove,countNumbersBelow,findIndex,isAscendingOrder,isDescendingOrder,extractDigits,extractUniqueElements,extractUnionElements,extractIntersectionOfElements,getDifference,checkSubset,generateZipArray,partitionOfArray} = library; 
+let {rotateSource,extractOddNumbers,extractEvenNumbers,addNumbers,alternateNumbers,reversedNumbers,reversedFibonacciSeries,findGreatestNumber,findSmallestNumber,calculateAverage,mapLength,countEvenNumbers,countOddNumbers,countNumbersAbove,countNumbersBelow,findIndex,isAscendingOrder,isDescendingOrder,extractDigits,extractUniqueElements,extractUnionElements,extractIntersectionOfElements,getDifference,checkSubset,generateZipArray,partitionOfArray} = library; 
 
 //..finding oddNumbers,evenNumbers,addNumbers,alternateElement........//
 assert.deepEqual(extractOddNumbers([]),[]);          //emptyArray
@@ -167,10 +167,10 @@ assert.deepEqual(generateZipArray([-3,4,6,3],[4,5,2,6,8]),[[-3,4],[4,5],[6,2],[3
 assert.deepEqual(generateZipArray([9,4,5,2],[1,3,2,4]),[[9,1],[4,3],[5,2],[2,4]])
 
 //.................rotate...............//
-assert.deepEqual(rotateArray([1,2,3,4],1),[2,3,4,1])
-assert.deepEqual(rotateArray([1,2,8],2),[8,1,2])
-assert.deepEqual(rotateArray([-2,4,-5,-66],1),[4,-5,-66,-2])
-assert.deepEqual(rotateArray([5,3,6,34,5],3),[34,5,5,3,6])
+assert.deepEqual(rotateSource([1,2,3,4],1),[2,3,4,1])
+assert.deepEqual(rotateSource([1,2,8],2),[8,1,2])
+assert.deepEqual(rotateSource([-2,4,-5,-66],1),[4,-5,-66,-2])
+assert.deepEqual(rotateSource([5,3,6,34,5],3),[34,5,5,3,6])
 
 //...............partitionOfArray................//
 assert.deepEqual(partitionOfArray([1,2,3,4],2),[[1,2],[3,4]])
