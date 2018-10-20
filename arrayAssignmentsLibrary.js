@@ -1,16 +1,5 @@
-//..............findingOddNumbers..............//
 const isEven = function(number) {
-  return number % 2 == 0;
-}
-
-const extractOddNumbers = function(numbers) { 
-  let oddNumbers = [];
-  for(let index = 0; index < numbers.length; index++) {
-    if(! isEven(numbers[index])) {
-      oddNumbers.push(numbers[index]);
-    }
-  }
-  return oddNumbers;
+  return (number % 2 == 0);
 }
 
 //..............findingEvenNumbers..............//
@@ -24,11 +13,22 @@ const extractEvenNumbers = function(numbers) {
   return evenNumbers;
 }
 
+//..............findingOddNumbers..............//
+const extractOddNumbers = function(numbers) { 
+  let oddNumbers = [];
+  for(let index = 0; index < numbers.length; index++) {
+    if(! isEven(numbers[index])) {
+      oddNumbers.push(numbers[index]);
+    }
+  }
+  return oddNumbers;
+}
+
 //..............findingSumOfNumbers..............//
 const addNumbers = function(numbers){
   let sum = 0;
-  for(let index = 0; index < numbers.length; index++){
-    sum = sum + numbers[index]
+  for(let number of numbers){
+    sum = sum + number
   }
   return sum;
 }
@@ -36,7 +36,7 @@ const addNumbers = function(numbers){
 //..............extractingAlternateNumbers..............//
 const extractAlternateElements = function(numbers) {
   let extractedNumbers = [];
-  for(let index = 0; index < numbers.length; index++) {
+  for(let index in numbers){
     if ( isEven(index)) {
       extractedNumbers.push(numbers[index]);
     }
@@ -54,7 +54,7 @@ const reverseNumbers = function(numbers) {
 }
 
 //..............reversingFibonacciSeries..............//
-const reverseFibonacciSeries = function(limit){
+const generateFibonacciSeries = function(limit){
   let firstNumber = 0;
   let secondNumber = 1;
   let sum = 0;
@@ -65,53 +65,57 @@ const reverseFibonacciSeries = function(limit){
     firstNumber = secondNumber;
     secondNumber = sum;
   }
+  return fibonacciSeries;
+}
+
+const reverseFibonacciSeries = function(limit){
+  fibonacciSeries = generateFibonacciSeries(limit)
   return reverseNumbers(fibonacciSeries);
 }
 
-//..........greatestNumberInAList...............//
-const findGreatestNumber = function(numbers){
-  let greatestNumber = 0;
-  for (index in numbers){
-    if(numbers[index] > greatestNumber){
-      greatestNumber = numbers[index];
+  //..........greatestNumberInAList...............//
+  const findGreatestNumber = function(numbers){
+    let greatestNumber = 0;
+    for (number of numbers){
+      if(number > greatestNumber){
+        greatestNumber = number;
+      }
     }
+    return greatestNumber;
   }
-  return greatestNumber;
-}
 
-//..........smallestNumberInAList.............//
-const findLeastNumber = function(numbers){
-  let leastNumber = numbers[0];
-  for (index in numbers){
-    if(numbers[index] < leastNumber){
-      leastNumber = numbers[index];
+  //..........smallestNumberInAList.............//
+  const findSmallestNumber = function(numbers){
+    let smallestNumber = numbers[0];
+    for (number of numbers){
+      if(number < smallestNumber){
+        smallestNumber = number;
+      }
     }
+    return smallestNumber;
   }
-  return leastNumber;
-}
 
-//................averageOfAList...................//
-const calculateAverage = function(numbers){
-  average = (addNumbers(numbers)/numbers.length); 
-  return average; 
-}
-
-//...............mappingLength...............//
-const mapLength = function(source){
-  let  mappedLengths = [];
-  for(let index = 0;index < source.length;index++){
-    mappedLengths.push(source[index].length);
+  //................averageOfAList...................//
+  const calculateAverage = function(numbers){
+    average = (addNumbers(numbers)/numbers.length); 
+    return average; 
   }
+
+  //...............mappingLength...............//
+  const mapLength = function(source){
+    let  mappedLengths = [];
+    for(let index = 0;index < source.length;index++){
+      mappedLengths.push(source[index].length);
+    }
   return mappedLengths;
 }
 
 //.............countEvenNumbers..............//
 const  countEvenNumbers = function (source){
   let count = 0;
-  let isNumberEven = "";
-  for (let index = 0;index < source.length; index++){
-    isNumberEven = isEven(source[index]);
-    if(isNumberEven){
+  let isEvenNumber = "";
+  for(let number of source){
+    if(isEven(number)){
       count = count + 1;
     }
   }
@@ -121,10 +125,8 @@ const  countEvenNumbers = function (source){
 //..............countOddNumbers.............//
 const  countOddNumbers = function (source){
   let count = 0;
-  let isNumberOdd = "";
-  for (let index = 0;index < source.length; index++){
-    isNumberOdd = isEven(source[index]);
-    if(! isNumberOdd){
+  for(let number of source){
+    if(! isEven(number)){
       count = count + 1;
     }
   }
@@ -133,8 +135,8 @@ const  countOddNumbers = function (source){
 //..........countNumbersAboveAThreshold.............//
 const countNumbersAbove = function(source,threshold){
   let count = 0;
-  for(let index = 0;index < source.length; index++){
-    if(source[index] > threshold){
+  for(let number of source){
+    if(number > threshold){
       count = count + 1;
     }
   }
@@ -144,8 +146,8 @@ const countNumbersAbove = function(source,threshold){
 //..........countNumbersBelowAThreshold.............//
 const countNumbersBelow = function(source,threshold){
   let count = 0;
-  for(let index = 0;index < source.length; index++){
-    if(source[index] < threshold){
+  for(let number of source){
+    if(number < threshold){
       count = count + 1;
     }
   }
@@ -193,7 +195,7 @@ const extractDigits = function(number) {
 }
 
 //............uniqueElements..............//
-const generateUniqueElements = function(source){
+const extractUniqueElements = function(source){
   let uniqueElements = [];
   uniqueElements.push(source[0]);
   for(let index = 1; index < source.length; index++){
@@ -205,26 +207,24 @@ const generateUniqueElements = function(source){
 }
 
 //..........unionOfElements.............//
-const generateUnionElements = function(source1,source2){
-  let  unionElements = generateUniqueElements(source1);
-  for (let index = 0; index < source2.length;index++){
-    if(! unionElements.includes(source2[index])){
-      unionElements.push(source2[index]);
+const extractUnionElements = function(array1,array2){
+  let  unionElements = extractUniqueElements(array1);
+  for (let index = 0; index < array2.length;index++){
+    if(! unionElements.includes(array2[index])){
+      unionElements.push(array2[index]);
     }
   }
   return unionElements;
 }
 
 //..........intersectionOfElements.........//
-const generateIntersectionOfElements = function(source1,source2){
+const extractIntersectionOfElements = function(array1,array2){
   let intersectionOfElements = [];
-  let uniqueSource1 = generateUniqueElements(source1); 
-  let uniqueSource2 = generateUniqueElements(source2); 
-  for(let index1 = 0; index1 < uniqueSource1.length; index1++){
-    for(let index2 = 0; index2 < uniqueSource2.length; index2++){
-      if(uniqueSource1[index1] == uniqueSource2[index2]){
-        intersectionOfElements.push(uniqueSource1[index1]);
-      }
+  let uniqueArray1 = extractUniqueElements(array1); 
+  let uniqueArray2 = extractUniqueElements(array2); 
+  for(let element of uniqueArray2){
+    if(uniqueArray1.includes(element)){
+      intersectionOfElements.push(element);
     }
   }
   return intersectionOfElements;
@@ -236,8 +236,8 @@ const getDifference = function(source1,source2){
   let count = 0;
   isDifferent = "";
   for(let index = 0; index < source1.length; index++){
-    isDifference = !source2.includes(source1[index]);
-    if(isDifference){
+    isDifferent = !source2.includes(source1[index]);
+    if(isDifferent){
       diffArray[count] = source1[index];
       count++;
     }
@@ -275,7 +275,7 @@ const generateZipArray = function(array1,array2){
 }
 
 //..............partitionOfNumbers...............//
-const partitionOfNumbers = function(array,number){
+const partitionOfArray = function(array,number){
   let partitionedArray = [[],[]];
   for (let index = 0;index < array.length;index++){
     partitionedArray[1].push(array[index]);
@@ -303,7 +303,7 @@ exports.alternateElements = extractAlternateElements;
 exports.reversedNumbers = reverseNumbers;
 exports.reversedFibonacciSeries = reverseFibonacciSeries;
 exports.findGreatestNumber = findGreatestNumber;
-exports.findLeastNumber = findLeastNumber;
+exports.findSmallestNumber = findSmallestNumber;
 exports.calculateAverage = calculateAverage;
 exports.mapLength = mapLength;
 exports.countEvenNumbers = countEvenNumbers;
@@ -314,11 +314,11 @@ exports.findIndex = findIndex;
 exports.isAscendingOrder = isAscendingOrder;
 exports.isDescendingOrder = isDescendingOrder;
 exports.extractDigits = extractDigits;
-exports.generateUniqueElements = generateUniqueElements;
-exports.generateUnionElements = generateUnionElements;
-exports.generateIntersectionOfElements = generateIntersectionOfElements;
+exports.extractUniqueElements = extractUniqueElements;
+exports.extractUnionElements = extractUnionElements;
+exports.extractIntersectionOfElements = extractIntersectionOfElements;
 exports.getDifference = getDifference;
 exports.checkSubset = checkSubset;
 exports.generateZipArray = generateZipArray;
 exports.rotateArray = rotateArray;
-exports.partitionOfNumbers=partitionOfNumbers;
+exports.partitionOfArray = partitionOfArray;

@@ -1,7 +1,7 @@
 const assert = require("assert");
 const library = require("./arrayAssignmentsLibrary.js");
 
-let {rotateArray,extractOddNumbers,extractEvenNumbers,addNumbers,alternateElements,reversedNumbers,reversedFibonacciSeries,findGreatestNumber,findLeastNumber,calculateAverage,mapLength,countEvenNumbers,countOddNumbers,countNumbersAbove,countNumbersBelow,findIndex,isAscendingOrder,isDescendingOrder,extractDigits,generateUniqueElements,generateUnionElements,generateIntersectionOfElements,getDifference,checkSubset,generateZipArray,partitionOfNumbers} = library; 
+let {rotateArray,extractOddNumbers,extractEvenNumbers,addNumbers,alternateElements,reversedNumbers,reversedFibonacciSeries,findGreatestNumber,findSmallestNumber,calculateAverage,mapLength,countEvenNumbers,countOddNumbers,countNumbersAbove,countNumbersBelow,findIndex,isAscendingOrder,isDescendingOrder,extractDigits,extractUniqueElements,extractUnionElements,extractIntersectionOfElements,getDifference,checkSubset,generateZipArray,partitionOfArray} = library; 
 
 //..finding oddNumbers,evenNumbers,addNumbers,alternateElement........//
 assert.deepEqual(extractOddNumbers([]),[]);          //emptyArray
@@ -50,11 +50,11 @@ assert.deepEqual(findGreatestNumber([54,-43,7,-54,66]),66);
 assert.deepEqual(findGreatestNumber([9,4,76,47,1,83]),83);
 
 //..........find least number in a list..........//
-assert.deepEqual(findLeastNumber([5]),5);
-assert.deepEqual(findLeastNumber([7,3]),3);
-assert.deepEqual(findLeastNumber([9,4,5,2]),2);
-assert.deepEqual(findLeastNumber([54,-43,7,-54,66]),-54);
-assert.deepEqual(findLeastNumber([9,4,76,47,1,83]),1);
+assert.deepEqual(findSmallestNumber([5]),5);
+assert.deepEqual(findSmallestNumber([7,3]),3);
+assert.deepEqual(findSmallestNumber([9,4,5,2]),2);
+assert.deepEqual(findSmallestNumber([54,-43,7,-54,66]),-54);
+assert.deepEqual(findSmallestNumber([9,4,76,47,1,83]),1);
 
 //.............calculate average of numbers.............//
 assert.deepEqual(calculateAverage([3]),3);
@@ -122,27 +122,27 @@ assert.deepEqual(extractDigits(57932),[5,7,9,3,2])
 assert.deepEqual(extractDigits(749325992),[7,4,9,3,2,5,9,9,2])
 
 //...........uniqueElements.............//
-assert.deepEqual(generateUniqueElements([1]),[1])
-assert.deepEqual(generateUniqueElements([7,4,4]),[7,4])
-assert.deepEqual(generateUniqueElements
+assert.deepEqual(extractUniqueElements([1]),[1])
+assert.deepEqual(extractUniqueElements([7,4,4]),[7,4])
+assert.deepEqual(extractUniqueElements
   ([5,7,7,9,3,3]),[5,7,9,3])
-assert.deepEqual(generateUniqueElements([7,4,4,9,3,2,9]),[7,4,9,3,2])
+assert.deepEqual(extractUniqueElements([7,4,4,9,3,2,9]),[7,4,9,3,2])
 
 
 //...........unionElements.............//
-assert.deepEqual(generateUnionElements([],[]),[undefined])
-assert.deepEqual(generateUnionElements([7],[4]),[7,4])
-assert.deepEqual(generateUnionElements([-1,7],[4,7]),[-1,7,4])
-assert.deepEqual(generateUnionElements([-1,7,-2],[-2,4,7]),[-1,7,-2,4])
-assert.deepEqual(generateUnionElements
+assert.deepEqual(extractUnionElements([1],[]),[1])
+assert.deepEqual(extractUnionElements([7],[4]),[7,4])
+assert.deepEqual(extractUnionElements([-1,7],[4,7]),[-1,7,4])
+assert.deepEqual(extractUnionElements([-1,7,-2],[-2,4,7]),[-1,7,-2,4])
+assert.deepEqual(extractUnionElements
   ([5,7,7,9],[1,3,3]),[5,7,9,1,3])
 
 //..........intersectionOfElements.............//
-assert.deepEqual(generateIntersectionOfElements([1],[2]),[])
-assert.deepEqual(generateIntersectionOfElements([3],[3]),[3])
-assert.deepEqual(generateIntersectionOfElements([1,4],[2,4]),[4])
-assert.deepEqual(generateIntersectionOfElements([7,4,23,5,7],[4,5,7,8,9]),[7,4,5])
-assert.deepEqual(generateIntersectionOfElements([1,4,2,5,6],[2,4,1,6,9]),[1,4,2,6])
+assert.deepEqual(extractIntersectionOfElements([1],[2]),[])
+assert.deepEqual(extractIntersectionOfElements([3],[3]),[3])
+assert.deepEqual(extractIntersectionOfElements([1,4],[2,4]),[4])
+assert.deepEqual(extractIntersectionOfElements([7,4,23,5],[4,5,7,8,9]),[4,5,7])
+assert.deepEqual(extractIntersectionOfElements([1,4,2,5,6],[2,4,1,6,9]),[2,4,1,6])
 
 //...............difference...............//
 assert.deepEqual(getDifference([1,2],[1]),[2])
@@ -171,11 +171,11 @@ assert.deepEqual(rotateArray([1,2,8],2),[8,1,2])
 assert.deepEqual(rotateArray([-2,4,-5,-66],1),[4,-5,-66,-2])
 assert.deepEqual(rotateArray([5,3,6,34,5],3),[34,5,5,3,6])
 
-//...............partitionOfNumbers................//
-assert.deepEqual(partitionOfNumbers([1,2,3,4],2),[[1,2],[3,4]])
-assert.deepEqual(partitionOfNumbers([3,1,3,4,5,6],7),[[3,1,3,4,5,6],[]])
-assert.deepEqual(partitionOfNumbers([1,2,7,4,9,10,5],5),[[1,2,4,5],[7,9,10]])
-assert.deepEqual(partitionOfNumbers([-1,-5,-3,-6,-3],-2),[[-5,-3,-6,-3],[-1]])
+//...............partitionOfArray................//
+assert.deepEqual(partitionOfArray([1,2,3,4],2),[[1,2],[3,4]])
+assert.deepEqual(partitionOfArray([3,1,3,4,5,6],7),[[3,1,3,4,5,6],[]])
+assert.deepEqual(partitionOfArray([1,2,7,4,9,10,5],5),[[1,2,4,5],[7,9,10]])
+assert.deepEqual(partitionOfArray([-1,-5,-3,-6,-3],-2),[[-5,-3,-6,-3],[-1]])
 
 
 console.log("...........test passed...........");
