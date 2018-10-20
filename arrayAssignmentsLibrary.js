@@ -17,7 +17,7 @@ const extractEvenNumbers = function(numbers) {
 const extractOddNumbers = function(numbers) { 
   let oddNumbers = [];
   for(let index = 0; index < numbers.length; index++) {
-    if(! isEven(numbers[index])) {
+    if(!isEven(numbers[index])) {
       oddNumbers.push(numbers[index]);
     }
   }
@@ -28,20 +28,20 @@ const extractOddNumbers = function(numbers) {
 const addNumbers = function(numbers){
   let sum = 0;
   for(let number of numbers){
-    sum = sum + number
+    sum = sum + number;
   }
   return sum;
 }
 
 //..............extractingAlternateNumbers..............//
-const extractAlternateElements = function(numbers) {
-  let extractedNumbers = [];
+const extractAlternateNumbers = function(numbers) {
+  let extractedDigits = [];
   for(let index in numbers){
     if ( isEven(index)) {
-      extractedNumbers.push(numbers[index]);
+      extractedDigits.push(numbers[index]);
     }
   }
-  return extractedNumbers;
+  return extractedDigits;
 }
 
 //..............reversingNumbers..............//
@@ -74,46 +74,45 @@ const reverseFibonacciSeries = function(limit){
 }
 
   //..........greatestNumberInAList...............//
-  const findGreatestNumber = function(numbers){
-    let greatestNumber = 0;
-    for (number of numbers){
-      if(number > greatestNumber){
-        greatestNumber = number;
-      }
+const findGreatestNumber = function(numbers){
+  let greatestNumber = 0;
+  for (number of numbers){
+    if(number > greatestNumber){
+      greatestNumber = number;
     }
-    return greatestNumber;
   }
+  return greatestNumber;
+}
 
-  //..........smallestNumberInAList.............//
-  const findSmallestNumber = function(numbers){
-    let smallestNumber = numbers[0];
-    for (number of numbers){
-      if(number < smallestNumber){
-        smallestNumber = number;
-      }
+//..........smallestNumberInAList.............//
+const findSmallestNumber = function(numbers){
+  let smallestNumber = numbers[0];
+  for (number of numbers){
+    if(number < smallestNumber){
+      smallestNumber = number;
     }
-    return smallestNumber;
   }
+  return smallestNumber;
+}
 
-  //................averageOfAList...................//
-  const calculateAverage = function(numbers){
-    average = (addNumbers(numbers)/numbers.length); 
-    return average; 
+//................averageOfAList...................//
+const calculateAverage = function(numbers){
+  let average = (addNumbers(numbers)/numbers.length); 
+  return average; 
+}
+
+//...............mappingLength...............//
+const mapLength = function(source){
+  let mappedLength = [];
+  for(let index = 0;index < source.length;index++){
+    mappedLength.push(source[index].length);
   }
-
-  //...............mappingLength...............//
-  const mapLength = function(source){
-    let  mappedLengths = [];
-    for(let index = 0;index < source.length;index++){
-      mappedLengths.push(source[index].length);
-    }
-  return mappedLengths;
+  return mappedLength;
 }
 
 //.............countEvenNumbers..............//
 const  countEvenNumbers = function (source){
   let count = 0;
-  let isEvenNumber = "";
   for(let number of source){
     if(isEven(number)){
       count = count + 1;
@@ -161,11 +160,12 @@ const findIndex = function(source,specifiedNumber){
       return index;
     }
   }
+  return -1;
 }
 
 //..............checkingAscendingOrder..............//
 const isAscendingOrder = function(source){ 
-  for(let index = 0; index < source.length; index++){
+  for(let index = 0; index < source.length-1; index++){
     if(source[index] > source[index + 1]){
       return false;
     }
@@ -176,7 +176,7 @@ const isAscendingOrder = function(source){
 
 //..............checkingDescendingOrder..............//
 const isDescendingOrder = function(source){ 
-  for(let index = 0; index < source.length; index++){
+  for(let index = 0; index < source.length-1; index++){
     if(source[index] < source[index + 1]){
       return false;
     }
@@ -187,11 +187,11 @@ const isDescendingOrder = function(source){
 //...........extractingDigitsFromANumber.............//
 const extractDigits = function(number) {
   let string = ""+number;
-  let extractedNumbers = [];
+  let extractedDigits = [];
   for(let index = 0; index < string.length; index++) {
-    extractedNumbers.push(string[index]);
+    extractedDigits.push(string[index]);
   }
-  return extractedNumbers;
+  return extractedDigits;
 }
 
 //............uniqueElements..............//
@@ -208,7 +208,7 @@ const extractUniqueElements = function(source){
 
 //..........unionOfElements.............//
 const extractUnionElements = function(array1,array2){
-  let  unionElements = extractUniqueElements(array1);
+  let unionElements = extractUniqueElements(array1);
   for (let index = 0; index < array2.length;index++){
     if(! unionElements.includes(array2[index])){
       unionElements.push(array2[index]);
@@ -233,13 +233,11 @@ const extractIntersectionOfElements = function(array1,array2){
 //................difference..............//
 const getDifference = function(source1,source2){
   let diffArray = [];
-  let count = 0;
-  isDifferent = "";
+  let isDifferent;
   for(let index = 0; index < source1.length; index++){
     isDifferent = !source2.includes(source1[index]);
     if(isDifferent){
-      diffArray[count] = source1[index];
-      count++;
+      diffArray.push(source1[index]);
     }
   }
   return diffArray;
@@ -256,20 +254,19 @@ const checkSubset = function(array1,array2){
 }
 
 //............zip................//
-const findSmallerArray = function(array1,array2){
+const findSmallerLength = function(array1,array2){
   if(array1.length <= array2.length) {
-    return array1;
+    return array1.length;
   }
-  return array2;
+  return array2.length;
 }
 
 const generateZipArray = function(array1,array2){
   let zippedArray = [];
-  smallArray = findSmallerArray(array1,array2);
-  for (let index = 0; index < smallArray.length; index++) {
+  smallerLength = findSmallerLength(array1,array2);
+  for (let index = 0; index < smallerLength; index++) {
     zippedArray[index] = [];
-    zippedArray[index][0] = array1[index];
-    zippedArray[index][1] = array2[index];
+    zippedArray[index].push(array1[index],array2[index]);
   }
   return zippedArray;
 }
@@ -299,7 +296,7 @@ exports.rotateArray=rotateArray;
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
 exports.addNumbers = addNumbers;
-exports.alternateElements = extractAlternateElements;
+exports.alternateNumbers = extractAlternateNumbers;
 exports.reversedNumbers = reverseNumbers;
 exports.reversedFibonacciSeries = reverseFibonacciSeries;
 exports.findGreatestNumber = findGreatestNumber;
