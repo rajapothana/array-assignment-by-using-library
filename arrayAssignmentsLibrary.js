@@ -232,15 +232,15 @@ const intersectionOfElements = function(array1,array2){
 
 //................difference..............//
 const findDifference = function(source1,source2){
-  let diffArray = [];
+  let difference = [];
   let isDifferent;
   for(let index = 0; index < source1.length; index++){
     isDifferent = !source2.includes(source1[index]);
     if(isDifferent){
-      diffArray.push(source1[index]);
+      difference.push(source1[index]);
     }
   }
-  return diffArray;
+  return difference;
 }
 
 //.............isSubset..............//
