@@ -1,7 +1,7 @@
 const assert = require("assert");
 const library = require("./arrayAssignmentsLibrary.js");
 
-let {rotateSource,extractOddNumbers,extractEvenNumbers,addNumbers,alternateNumbers,reversedNumbers,reversedFibonacciSeries,findGreatestNumber,findSmallestNumber,calculateAverage,mapLength,countEvenNumbers,countOddNumbers,countNumbersAbove,countNumbersBelow,findIndex,isAscendingOrder,isDescendingOrder,extractDigits,extractUniqueElements,extractUnionElements,extractIntersectionOfElements,getDifference,checkSubset,generateZipArray,partitionOfArray} = library; 
+let {rotateSource,extractOddNumbers,extractEvenNumbers,addNumbers,alternateNumbers,reversedNumbers,reversedFibonacciSeries,findGreatestNumber,findSmallestNumber,calculateAverage,mapLength,countEvenNumbers,countOddNumbers,countNumbersAbove,countNumbersBelow,findIndex,isAscendingOrder,isDescendingOrder,extractDigits,extractUniqueElements,unionOfElements,intersectionOfElements,findDifference,checkSubset,generateZipArray,partitionOfArray} = library; 
 
 //..finding oddNumbers,evenNumbers,addNumbers,alternateElement........//
 assert.deepEqual(extractOddNumbers([]),[]);          //emptyArray
@@ -129,28 +129,27 @@ assert.deepEqual(extractUniqueElements
   ([5,7,7,9,3,3]),[5,7,9,3])
 assert.deepEqual(extractUniqueElements([7,4,4,9,3,2,9]),[7,4,9,3,2])
 
-
-//...........unionElements.............//
-assert.deepEqual(extractUnionElements([1],[]),[1])
-assert.deepEqual(extractUnionElements([7],[4]),[7,4])
-assert.deepEqual(extractUnionElements([-1,7],[4,7]),[-1,7,4])
-assert.deepEqual(extractUnionElements([-1,7,-2],[-2,4,7]),[-1,7,-2,4])
-assert.deepEqual(extractUnionElements
+//...........unionOfElements.............//
+assert.deepEqual(unionOfElements([1],[]),[1])
+assert.deepEqual(unionOfElements([7],[4]),[7,4])
+assert.deepEqual(unionOfElements([-1,7],[4,7]),[-1,7,4])
+assert.deepEqual(unionOfElements([-1,7,-2],[-2,4,7]),[-1,7,-2,4])
+assert.deepEqual(unionOfElements
   ([5,7,7,9],[1,3,3]),[5,7,9,1,3])
 
 //..........intersectionOfElements.............//
-assert.deepEqual(extractIntersectionOfElements([1],[2]),[])
-assert.deepEqual(extractIntersectionOfElements([3],[3]),[3])
-assert.deepEqual(extractIntersectionOfElements([1,4],[2,4]),[4])
-assert.deepEqual(extractIntersectionOfElements([7,4,23,5],[4,5,7,8,9]),[4,5,7])
-assert.deepEqual(extractIntersectionOfElements([1,4,2,5,6],[2,4,1,6,9]),[2,4,1,6])
+assert.deepEqual(intersectionOfElements([1],[2]),[])
+assert.deepEqual(intersectionOfElements([3],[3]),[3])
+assert.deepEqual(intersectionOfElements([1,4],[2,4]),[4])
+assert.deepEqual(intersectionOfElements([7,4,23,5],[4,5,7,8,9]),[4,5,7])
+assert.deepEqual(intersectionOfElements([1,4,2,5,6],[2,4,1,6,9]),[2,4,1,6])
 
 //...............difference...............//
-assert.deepEqual(getDifference([1,2],[1]),[2])
-assert.deepEqual(getDifference([1,2,4],[2,3,5]),[1,4])
-assert.deepEqual(getDifference([3,4,5,1,6],[5,3,2,6,5]),[4,1])
-assert.deepEqual(getDifference([-1,0,3,2,4],[1,0,5,3]),[-1,2,4])
-assert.deepEqual(getDifference([9,4,2,2,5],[7,3,4,32,4]),[9,2,2,5])
+assert.deepEqual(findDifference([1,2],[1]),[2])
+assert.deepEqual(findDifference([1,2,4],[2,3,5]),[1,4])
+assert.deepEqual(findDifference([3,4,5,1,6],[5,3,2,6,5]),[4,1])
+assert.deepEqual(findDifference([-1,0,3,2,4],[1,0,5,3]),[-1,2,4])
+assert.deepEqual(findDifference([9,4,2,2,5],[7,3,4,32,4]),[9,2,2,5])
 
 //...............isSubset..............//
 assert.deepEqual(checkSubset([1,2],[1]),true)

@@ -35,13 +35,13 @@ const addNumbers = function(numbers){
 
 //..............extractingAlternateNumbers..............//
 const extractAlternateNumbers = function(numbers) {
-  let extractedDigits = [];
+  let extractedNumbers = [];
   for(let index in numbers){
     if ( isEven(index)) {
-      extractedDigits.push(numbers[index]);
+      extractedNumbers.push(numbers[index]);
     }
   }
-  return extractedDigits;
+  return extractedNumbers;
 }
 
 //..............reversingNumbers..............//
@@ -75,7 +75,7 @@ const reverseFibonacciSeries = function(limit){
 
   //..........greatestNumberInAList...............//
 const findGreatestNumber = function(numbers){
-  let greatestNumber = 0;
+  let greatestNumber = numbers[0];
   for (number of numbers){
     if(number > greatestNumber){
       greatestNumber = number;
@@ -207,7 +207,7 @@ const extractUniqueElements = function(source){
 }
 
 //..........unionOfElements.............//
-const extractUnionElements = function(array1,array2){
+const unionOfElements = function(array1,array2){
   let unionElements = extractUniqueElements(array1);
   for (let index = 0; index < array2.length;index++){
     if(! unionElements.includes(array2[index])){
@@ -218,7 +218,7 @@ const extractUnionElements = function(array1,array2){
 }
 
 //..........intersectionOfElements.........//
-const extractIntersectionOfElements = function(array1,array2){
+const intersectionOfElements = function(array1,array2){
   let intersectionOfElements = [];
   let uniqueArray1 = extractUniqueElements(array1); 
   let uniqueArray2 = extractUniqueElements(array2); 
@@ -231,7 +231,7 @@ const extractIntersectionOfElements = function(array1,array2){
 }
 
 //................difference..............//
-const getDifference = function(source1,source2){
+const findDifference = function(source1,source2){
   let diffArray = [];
   let isDifferent;
   for(let index = 0; index < source1.length; index++){
@@ -312,9 +312,9 @@ exports.isAscendingOrder = isAscendingOrder;
 exports.isDescendingOrder = isDescendingOrder;
 exports.extractDigits = extractDigits;
 exports.extractUniqueElements = extractUniqueElements;
-exports.extractUnionElements = extractUnionElements;
-exports.extractIntersectionOfElements = extractIntersectionOfElements;
-exports.getDifference = getDifference;
+exports.unionOfElements = unionOfElements;
+exports.intersectionOfElements = intersectionOfElements;
+exports.findDifference = findDifference;
 exports.checkSubset = checkSubset;
 exports.generateZipArray = generateZipArray;
 exports.rotateSource = rotateSource;
