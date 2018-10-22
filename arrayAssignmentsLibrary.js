@@ -22,7 +22,10 @@ const findLength = function(source){
 const convertStrings = function (number) {
   return +number;
 }
-
+const reverse = function (array,number) {
+  array.unshift(number);
+  return array;
+}
 //..............findingEvenNumbers..............//
 const extractEvenNumbers = function(numbers){
   return numbers.filter(isEven);
@@ -109,13 +112,9 @@ const extractDigits = function(number) {
   return source.map(convertStrings);
 }
 
-//..............reversingNumbers..............//
+//..............reversingArray..............//
 const reverseArray = function(numbers) { 
-  let reversedNumbers = [];
-  for(let index = numbers.length-1; index >= 0; index--) {
-    reversedNumbers.push(numbers[index]);
-  }
-  return reversedNumbers;
+  return numbers.reduce(reverse,[]);
 }
 
 //..............reversingFibonacciSeries..............//
