@@ -167,15 +167,15 @@ const isDescendingOrder = function(numbers){
 }
 
  //............uniqueElements..............//
-const extractUniqueElements = function(source){
+const extractUniqueElements = function(elements){
   let uniqueElements = [];
-  uniqueElements.push(source[0]);
-  for(let index = 1; index < source.length; index++){
-    if(! uniqueElements.includes(source[index])){
-      uniqueElements.push(source[index]);
+  uniqueElements.push(elements[0]);
+  for(let element of elements){
+    if(! uniqueElements.includes(element)){
+      uniqueElements.push(element);
     }
   }
-  return uniqueElements;
+    return uniqueElements;
 }
 
 //..........unionOfElements.............//

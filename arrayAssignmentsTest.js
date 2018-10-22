@@ -76,6 +76,7 @@ assert.deepEqual(reversedFibonacciSeries(7),[8,5,3,2,1,1,0]);
 assert.deepEqual(reversedFibonacciSeries(9),[21,13,8,5,3,2,1,1,0]);    
 
 //........findGreatest number in a list...........// // what about empty array?
+assert.deepEqual(findGreatestNumber([]),0);
 assert.deepEqual(findGreatestNumber([5]),5);
 assert.deepEqual(findGreatestNumber([7,3]),7);
 assert.deepEqual(findGreatestNumber([9,4,5,2]),9);
