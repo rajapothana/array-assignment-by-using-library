@@ -26,6 +26,21 @@ const reverse = function (array,number) {
   array.unshift(number);
   return array;
 }
+const isGreater = function(a,b){
+  return a>b;
+}
+const islesser = function(a,b){
+  return a<b;
+}
+const isInOrder = function (object,element) {
+  checkNumber = object.check;
+  if(checkNumber(object.init,element)){
+    object.isInOrder = false;
+    return object;
+  }
+  object.init = element;
+  return object;
+}
 //..............findingEvenNumbers..............//
 const extractEvenNumbers = function(numbers){
   return numbers.filter(isEven);
@@ -139,30 +154,19 @@ const reverseFibonacciSeries = function(limit){
 
 //..............checkingAscendingOrder..............//
 const isAscendingOrder = function (numbers) {
-  const isInOrder = function (object,element) {
-    if(object.init > element){
-      object.isInOrder = false;
-      return object;
-    }
-    object.init = element;
-    return object;
-  }
-  let obj = {isInOrder:true,init : numbers[0]}
+ let obj = {check:isGreater,isInOrder:true,init : numbers[0]}
   numbers.reduce(isInOrder,obj);
   return obj.isInOrder;
 }
 
 //..............checkingDescendingOrder..............//
-const isDescendingOrder = function(source){ 
-  for(let index = 0; index < source.length-1; index++){
-    if(source[index] < source[index + 1]){
-      return false;
-    }
-  }
-  return true;
+const isDescendingOrder = function(numbers){ 
+  let obj = {check:islesser,isInOrder:true,init : numbers[0]}
+  numbers.reduce(isInOrder,obj);
+  return obj.isInOrder;
 }
 
-//............uniqueElements..............//
+ //............uniqueElements..............//
 const extractUniqueElements = function(source){
   let uniqueElements = [];
   uniqueElements.push(source[0]);
