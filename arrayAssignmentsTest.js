@@ -1,4 +1,4 @@
-const assert = require("assert");
+const assert = require("assert")
 const library = require("./arrayAssignmentsLibrary.js");
 
 let {rotateSource,extractOddNumbers,extractEvenNumbers,addNumbers,extractAlternateNumbers,reverseArray,reversedFibonacciSeries,findGreatestNumber,findSmallestNumber,calculateAverage,mapLength,countEvenNumbers,countOddNumbers,countNumbersAbove,countNumbersBelow,findIndex,isAscendingOrder,isDescendingOrder,extractDigits,extractUniqueElements,unionOfElements,intersectionOfElements,findDifference,checkSubset,generateZipArray,partitionOfArray} = library; 
@@ -103,14 +103,14 @@ assert.deepEqual(mapLength(["sachin","rohit"]),[6,5])
 assert.deepEqual(mapLength(["dhoni","kohli","bumhra"]),[5,5,6])
 assert.deepEqual(mapLength(["michel","anna","bamboo","javascript"]),[6,4,6,10])
 
-//...............countEvenNumbers..........//
+//...............countevennumbers..........//
 assert.deepEqual(countEvenNumbers([]),0)
 assert.deepEqual(countEvenNumbers([1]),0)
 assert.deepEqual(countEvenNumbers([2]),1)
 assert.deepEqual(countEvenNumbers([4,3,2]),2)
 assert.deepEqual(countEvenNumbers([3,5,4,6,7,8]),3)
 
-//...............countOddNumbers..........//
+//...............countoddnumbers..........//
 assert.deepEqual(countOddNumbers([]),0)
 assert.deepEqual(countOddNumbers([1]),1)
 assert.deepEqual(countOddNumbers([2]),0)
@@ -118,32 +118,32 @@ assert.deepEqual(countOddNumbers([4,3,2]),1)
 assert.deepEqual(countOddNumbers([4,3,2,7,4,2,5]),3)
 
 
-//..............countNumbersAboveAThreshold.............//
+//..............countnumbersaboveathreshold.............//
 assert.deepEqual(countNumbersAbove([6,4,5],4),2)
 assert.deepEqual(countNumbersAbove([4,2,9,8,77,1],5),3)
 assert.deepEqual(countNumbersAbove([9,5,-6,7,-8],2),3)
 assert.deepEqual(countNumbersAbove([6,0,-77,44],0),2)
 
-//..............countNumbersBelowAThreshold.............//
-assert.deepEqual(countNumbersBelow([6,4,5],5),1)
-assert.deepEqual(countNumbersBelow([4,2,9,8,77,1],8),3)
+//..............countnumbersbelowathreshold.............//
+assert.deepEqual(countNumbersBelow([6,4,5],5),2)
+assert.deepEqual(countNumbersBelow([4,2,9,8,77,1],8),4)
 assert.deepEqual(countNumbersBelow([9,5,-6,7,-8],2),2)
-assert.deepEqual(countNumbersBelow([-5,0,-77,44],0),2)
+assert.deepEqual(countNumbersBelow([-5,0,-77,44],0),3)
 
-//.............findIndexOfANumber...............//
+//.............findindexofanumber...............//
 assert.deepEqual(findIndex([6,4,5],3),-1)
 assert.deepEqual(findIndex([6,4,5],5),2)
 assert.deepEqual(findIndex([4,2,9,8,77,1],8),3)
 assert.deepEqual(findIndex([9,5,-6,7,-8],-8),4)
 assert.deepEqual(findIndex([9,5,-6,7,-8],9),0)
 
-//.............checkingAscendingOrder..........//
+//.............checkingascendingorder..........//
 assert.deepEqual(isAscendingOrder([0]),true)
 assert.deepEqual(isAscendingOrder([1,2,3]),true)
 assert.deepEqual(isAscendingOrder([-1,-2,-3]),false)
 assert.deepEqual(isAscendingOrder([7,12,30,45,222,-33333]),false)
 
-//.............checkingDescendingOrder..........//
+//.............checkingdescendingorder..........//
 assert.deepEqual(isDescendingOrder([0]),true)
 assert.deepEqual(isDescendingOrder([1,2,3]),false)
 assert.deepEqual(isDescendingOrder([-1,-2,-3]),true)

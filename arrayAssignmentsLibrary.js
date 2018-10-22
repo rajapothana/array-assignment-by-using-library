@@ -1,51 +1,112 @@
-const isEven = function(number) {
-  return (number % 2 == 0);
-}
-
 // extractEvenNumbers and extractOddNumbers have lot of duplication. create a new function that reduces that duplication. 
 // that does not mean ywo have only 1 function. it means you have 3 functions. but no duplication. 
 // first you can use if-else. then you'll get rid of them. 
+const isEven = function(number) {
+  return (number % 2 == 0);
+}
+const isOdd = function (number) {
+  return !isEven(number);
+}
+const sum = function (num1,num2) {
+  return num1 + num2;
+}
+const maxNumber = function(num1,num2){
+  return Math.max(num1,num2);
+}
+const minNumber = function(num1,num2){
+  return Math.min(num1,num2);
+}
+const findLength = function(source){
+  return source.length;
+}
+const convertStrings = function (number) {
+  return +number;
+}
 
 //..............findingEvenNumbers..............//
-const extractEvenNumbers = function(numbers) { 
-  let evenNumbers = [];
-  for(let index = 0; index < numbers.length; index++) {
-    if(isEven(numbers[index])) {
-      evenNumbers.push(numbers[index]);
-    }
-  }
-  return evenNumbers;
+const extractEvenNumbers = function(numbers){
+  return numbers.filter(isEven);
 }
-
 //..............findingOddNumbers..............//
 const extractOddNumbers = function(numbers) { 
-  let oddNumbers = [];
-  for(let index = 0; index < numbers.length; index++) {
-    if(!isEven(numbers[index])) {
-      oddNumbers.push(numbers[index]);
-    }
-  }
-  return oddNumbers;
+  return numbers.filter(isOdd);
 }
-
 //..............findingSumOfNumbers..............//
 const addNumbers = function(numbers){
-  let sum = 0;
-  for(let number of numbers){
-    sum = sum + number;
-  }
-  return sum;
+  return numbers.reduce(sum,0);
 }
-
 //..............extractingAlternateNumbers..............//
 const extractAlternateNumbers = function(numbers) {
-  let extractedNumbers = [];
-  for(let index in numbers){
-    if ( isEven(index)) {
-      extractedNumbers.push(numbers[index]);
+  const isIndexEven = function(object,number){
+    if(object.index % 2 == 0){
+      object.element.push(number);
     }
+    object.index++;
+    return object;
   }
-  return extractedNumbers;
+  let object = {index:0,element:[]};
+  numbers.reduce(isIndexEven,object);
+  return object.element;
+}
+//..........greatestNumberInAList...............//
+const findGreatestNumber = function(numbers){
+  return numbers.reduce(maxNumber,0);
+}
+
+//..........smallestNumberInAList.............//
+const findSmallestNumber = function(numbers){
+  return numbers.reduce(minNumber);
+}
+
+//................averageOfAList...................//
+const calculateAverage = function(numbers){
+  return (numbers.reduce(sum) / numbers.length);
+}
+//................mapLength.................//
+const mapLength = function(source){
+  return source.map(findLength);
+}
+//.............countEvenNumbers..............//
+const countEvenNumbers = function (numbers){
+  return numbers.filter(isEven).length;
+}
+//..............countOddNumbers.............//
+const countOddNumbers = function (numbers){
+  return numbers.filter(isOdd).length;
+}
+//..........countNumbersAboveAThreshold.............//
+const countNumbersAbove = function(source,threshold){
+  const filterNumbersAboveThreshold = function (number){
+    return number > threshold;
+  }
+  return source.filter(filterNumbersAboveThreshold).length;
+}
+//..........countNumbersBelowAThreshold.............//
+const countNumbersBelow = function(source,threshold){
+  const filterNumbersBelowThreshold = function (number){
+    return number <= threshold;
+  }
+  return source.filter(filterNumbersBelowThreshold).length;
+}
+//...............indexOfANumber................//
+const findIndex = function(source,specifiedNumber){
+  const matchNumber  = function(object,element){
+    let {number,index} = object;
+    if(element == number){
+      object.result = object.index;
+      return object;
+    }
+    object.index++;
+    return object;
+  }
+  let obj = {number:specifiedNumber,index:0,result:-1};
+  source.reduce(matchNumber,obj);
+  return obj.result;
+}
+//...........extractingDigitsFromANumber.............//
+const extractDigits = function(number) {
+  let source = number.toString().split("");
+  return source.map(convertStrings);
 }
 
 //..............reversingNumbers..............//
@@ -77,96 +138,6 @@ const reverseFibonacciSeries = function(limit){
   return reverseArray(fibonacciSeries);
 }
 
-  //..........greatestNumberInAList...............//
-const findGreatestNumber = function(numbers){
-  let greatestNumber = numbers[0];
-  for (number of numbers){
-    if(number > greatestNumber){
-      greatestNumber = number;
-    }
-  }
-  return greatestNumber;
-}
-
-//..........smallestNumberInAList.............//
-const findSmallestNumber = function(numbers){
-  let smallestNumber = numbers[0];
-  for (number of numbers){
-    if(number < smallestNumber){
-      smallestNumber = number;
-    }
-  }
-  return smallestNumber;
-}
-
-//................averageOfAList...................//
-const calculateAverage = function(numbers){
-  let average = (addNumbers(numbers)/numbers.length); 
-  return average; 
-}
-
-//...............mappingLength...............//
-const mapLength = function(source){
-  let mappedLength = [];
-  for(let index = 0;index < source.length;index++){
-    mappedLength.push(source[index].length);
-  }
-  return mappedLength;
-}
-
-//.............countEvenNumbers..............//
-const  countEvenNumbers = function (source){
-  let count = 0;
-  for(let number of source){
-    if(isEven(number)){
-      count = count + 1;
-    }
-  }
-  return count;
-}
-
-//..............countOddNumbers.............//
-const  countOddNumbers = function (source){
-  let count = 0;
-  for(let number of source){
-    if(! isEven(number)){
-      count = count + 1;
-    }
-  }
-  return count;
-}
-//..........countNumbersAboveAThreshold.............//
-const countNumbersAbove = function(source,threshold){
-  let count = 0;
-  for(let number of source){
-    if(number > threshold){
-      count = count + 1;
-    }
-  }
-  return count;
-}
-
-//..........countNumbersBelowAThreshold.............//
-const countNumbersBelow = function(source,threshold){
-  let count = 0;
-  for(let number of source){
-    if(number < threshold){
-      count = count + 1;
-    }
-  }
-  return count;
-}
-
-//...............indexOfANumber................//
-const findIndex = function(source,specifiedNumber){
-  for(let index = 0; index < source.length; index++){
-    if(source[index] == specifiedNumber){
-      return index;
-    }
-  }
-  return -1;
-}
-
 //..............checkingAscendingOrder..............//
 const isAscendingOrder = function(source){ 
   for(let index = 0; index < source.length-1; index++){
@@ -186,16 +157,6 @@ const isDescendingOrder = function(source){
     }
   }
   return true;
-}
-
-//...........extractingDigitsFromANumber.............//
-const extractDigits = function(number) {
-  let string = ""+number;
-  let extractedDigits = [];
-  for(let index = 0; index < string.length; index++) {
-    extractedDigits.push(string[index]);
-  }
-  return extractedDigits;
 }
 
 //............uniqueElements..............//
@@ -296,13 +257,10 @@ const rotateSource = function(source,limit){
   return source;
 }
 
-exports.rotateSource=rotateSource;
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
 exports.addNumbers = addNumbers;
 exports.extractAlternateNumbers = extractAlternateNumbers;
-exports.reverseArray = reverseArray;
-exports.reversedFibonacciSeries = reverseFibonacciSeries;
 exports.findGreatestNumber = findGreatestNumber;
 exports.findSmallestNumber = findSmallestNumber;
 exports.calculateAverage = calculateAverage;
@@ -312,9 +270,11 @@ exports.countOddNumbers = countOddNumbers;
 exports.countNumbersAbove = countNumbersAbove;
 exports.countNumbersBelow = countNumbersBelow;
 exports.findIndex = findIndex;
+exports.extractDigits = extractDigits;
+exports.reverseArray = reverseArray;
+exports.reversedFibonacciSeries = reverseFibonacciSeries;
 exports.isAscendingOrder = isAscendingOrder;
 exports.isDescendingOrder = isDescendingOrder;
-exports.extractDigits = extractDigits;
 exports.extractUniqueElements = extractUniqueElements;
 exports.unionOfElements = unionOfElements;
 exports.intersectionOfElements = intersectionOfElements;
