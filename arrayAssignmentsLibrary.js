@@ -4,16 +4,19 @@
 const isEven = function(number) {
   return (number % 2 == 0);
 }
+
 const isOdd = function (number) {
   return !isEven(number);
 }
+
 const sum = function (num1,num2) {
   return num1 + num2;
 }
-const maxNumber = function(num1,num2){
+
+const findMaxNumber = function(num1,num2){
   return Math.max(num1,num2);
 }
-const minNumber = function(num1,num2){
+const findMinNumber = function(num1,num2){
   return Math.min(num1,num2);
 }
 const findLength = function(source){
@@ -26,6 +29,14 @@ const reverse = function (array,number) {
   array.unshift(number);
   return array;
 }
+const isIndexEven = function(object,number){
+  if(object.index % 2 == 0){
+    object.element.push(number);
+  }
+  object.index++;
+  return object;
+}
+
 const isGreater = function(a,b){
   return a>b;
 }
@@ -55,25 +66,18 @@ const addNumbers = function(numbers){
 }
 //..............extractingAlternateNumbers..............//
 const extractAlternateNumbers = function(numbers) {
-  const isIndexEven = function(object,number){
-    if(object.index % 2 == 0){
-      object.element.push(number);
-    }
-    object.index++;
-    return object;
-  }
   let object = {index:0,element:[]};
   numbers.reduce(isIndexEven,object);
   return object.element;
 }
 //..........greatestNumberInAList...............//
 const findGreatestNumber = function(numbers){
-  return numbers.reduce(maxNumber,0);
+  return numbers.reduce(findMaxNumber,0);
 }
 
 //..........smallestNumberInAList.............//
 const findSmallestNumber = function(numbers){
-  return numbers.reduce(minNumber);
+  return numbers.reduce(findMinNumber);
 }
 
 //................averageOfAList...................//
@@ -154,7 +158,7 @@ const reverseFibonacciSeries = function(limit){
 
 //..............checkingAscendingOrder..............//
 const isAscendingOrder = function (numbers) {
- let obj = {check:isGreater,isInOrder:true,init : numbers[0]}
+  let obj = {check:isGreater,isInOrder:true,init : numbers[0]}
   numbers.reduce(isInOrder,obj);
   return obj.isInOrder;
 }
@@ -166,53 +170,49 @@ const isDescendingOrder = function(numbers){
   return obj.isInOrder;
 }
 
- //............uniqueElements..............//
+//............uniqueElements..............//
 const extractUniqueElements = function(elements){
-  let uniqueElements = [];
-  uniqueElements.push(elements[0]);
-  for(let element of elements){
-    if(! uniqueElements.includes(element)){
-      uniqueElements.push(element);
+  const findUnique = function (uniqueElements,element) {
+    if(uniqueElements.includes(element)){
+      return uniqueElements;
     }
-  }
+    uniqueElements.push(element);
     return uniqueElements;
+  }
+  return elements.reduce(findUnique,[]);
 }
 
 //..........unionOfElements.............//
 const unionOfElements = function(array1,array2){
-  let unionElements = extractUniqueElements(array1);
-  for (let index = 0; index < array2.length;index++){
-    if(! unionElements.includes(array2[index])){
-      unionElements.push(array2[index]);
-    }
-  }
-  return unionElements;
+  concatArrays = array1.concat(array2);
+  return extractUniqueElements(concatArrays);
 }
 
 //..........intersectionOfElements.........//
 const intersectionOfElements = function(array1,array2){
-  let intersectionOfElements = [];
-  let uniqueArray1 = extractUniqueElements(array1); 
-  let uniqueArray2 = extractUniqueElements(array2); 
-  for(let element of uniqueArray2){
-    if(uniqueArray1.includes(element)){
-      intersectionOfElements.push(element);
+  const findCommonElements = function(object,element){
+    if(object.array.includes(element)){
+      object.intersection.push(element);
     }
+    return object;
   }
-  return intersectionOfElements;
+  let object = {array:array1,intersection:[]};
+  array2.reduce(findCommonElements,object);
+  return object.intersection;
 }
 
 //................difference..............//
-const findDifference = function(source1,source2){
-  let difference = [];
-  let isDifferent;
-  for(let index = 0; index < source1.length; index++){
-    isDifferent = !source2.includes(source1[index]);
-    if(isDifferent){
-      difference.push(source1[index]);
+const findDifference = function(array1,array2){
+  const difference = function (object,element) {
+    if(!object.array.includes(element)){
+      object.difference.push(element);
+      return object;
     }
+    return object;
   }
-  return difference;
+  let object = {array:array2,difference:[]}
+  array1.reduce(difference,object);
+  return object.difference;
 }
 
 //.............isSubset..............//

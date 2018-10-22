@@ -79,28 +79,35 @@ assert.deepEqual(reversedFibonacciSeries(9),[21,13,8,5,3,2,1,1,0]);
 assert.deepEqual(findGreatestNumber([]),0);
 assert.deepEqual(findGreatestNumber([5]),5);
 assert.deepEqual(findGreatestNumber([7,3]),7);
-assert.deepEqual(findGreatestNumber([9,4,5,2]),9);
+assert.deepEqual(findGreatestNumber([6,2,1]),6);
+assert.deepEqual(findGreatestNumber([9,4,5,-2]),9);
 assert.deepEqual(findGreatestNumber([54,-43,7,-54,66]),66);
 assert.deepEqual(findGreatestNumber([9,4,76,47,1,83]),83);
 
 //..........find least number in a list..........//
+assert.deepEqual(findSmallestNumber([0]),0);
 assert.deepEqual(findSmallestNumber([5]),5);
 assert.deepEqual(findSmallestNumber([7,3]),3);
+assert.deepEqual(findSmallestNumber([4,6,9]),4);
 assert.deepEqual(findSmallestNumber([9,4,5,2]),2);
 assert.deepEqual(findSmallestNumber([54,-43,7,-54,66]),-54);
 assert.deepEqual(findSmallestNumber([9,4,76,47,1,83]),1);
 
 //.............calculate average of numbers.............//
+assert.deepEqual(calculateAverage([0]),0);
 assert.deepEqual(calculateAverage([3]),3);
 assert.deepEqual(calculateAverage([7,3]),5);
+assert.deepEqual(calculateAverage([10,6,2]),6);
 assert.deepEqual(calculateAverage([9,4,5,6]),6);
 assert.deepEqual(calculateAverage([54,-43,7,-54,66]),6);
 assert.deepEqual(calculateAverage([9,4,76,47,1,83]),36.666666666666664);
 
 //...............mapping length...............// // empty array
+assert.deepEqual(mapLength([]),[])
 assert.deepEqual(mapLength(["a"]),[1])
 assert.deepEqual(mapLength(["prasad"]),[6])
 assert.deepEqual(mapLength(["sachin","rohit"]),[6,5])
+assert.deepEqual(mapLength(["glksjgjlh","rfwfg-0"]),[9,7])
 assert.deepEqual(mapLength(["dhoni","kohli","bumhra"]),[5,5,6])
 assert.deepEqual(mapLength(["michel","anna","bamboo","javascript"]),[6,4,6,10])
 
@@ -108,22 +115,32 @@ assert.deepEqual(mapLength(["michel","anna","bamboo","javascript"]),[6,4,6,10])
 assert.deepEqual(countEvenNumbers([]),0)
 assert.deepEqual(countEvenNumbers([1]),0)
 assert.deepEqual(countEvenNumbers([2]),1)
-assert.deepEqual(countEvenNumbers([4,3,2]),2)
+assert.deepEqual(countEvenNumbers([2,4,5]),2)
+assert.deepEqual(countEvenNumbers([4,3,2,-4]),3)
+assert.deepEqual(countEvenNumbers([555,79,482,0]),2)
 assert.deepEqual(countEvenNumbers([3,5,4,6,7,8]),3)
+assert.deepEqual(countEvenNumbers([3,0,33,-5,4,5,2]),3)
 
 //...............countoddnumbers..........//
 assert.deepEqual(countOddNumbers([]),0)
 assert.deepEqual(countOddNumbers([1]),1)
 assert.deepEqual(countOddNumbers([2]),0)
+assert.deepEqual(countOddNumbers([2,7]),1)
 assert.deepEqual(countOddNumbers([4,3,2]),1)
+assert.deepEqual(countOddNumbers([5,7,49,0]),3)
 assert.deepEqual(countOddNumbers([4,3,2,7,4,2,5]),3)
+assert.deepEqual(countOddNumbers([4,-4,-5,2,98,99]),2)
 
 
 //..............countnumbersaboveathreshold.............//
-assert.deepEqual(countNumbersAbove([6,4,5],4),2)
-assert.deepEqual(countNumbersAbove([4,2,9,8,77,1],5),3)
+assert.deepEqual(countNumbersAbove([],4),0)
+assert.deepEqual(countNumbersAbove([6],3),1)
+assert.deepEqual(countNumbersAbove([6,4],7),0)
+assert.deepEqual(countNumbersAbove([6,5,3],4),2)
+assert.deepEqual(countNumbersAbove([4,2,9,8],5),2)
 assert.deepEqual(countNumbersAbove([9,5,-6,7,-8],2),3)
 assert.deepEqual(countNumbersAbove([6,0,-77,44],0),2)
+assert.deepEqual(countNumbersAbove([6,0,-77,44,0,7],0),3)
 
 //..............countnumbersbelowathreshold.............//
 assert.deepEqual(countNumbersBelow([6,4,5],5),2)
