@@ -138,15 +138,19 @@ const reverseFibonacciSeries = function(limit){
 }
 
 //..............checkingAscendingOrder..............//
-const isAscendingOrder = function(source){ 
-  for(let index = 0; index < source.length-1; index++){
-    if(source[index] > source[index + 1]){
-      return false;
+const isAscendingOrder = function (numbers) {
+  const isInOrder = function (object,element) {
+    if(object.init > element){
+      object.isInOrder = false;
+      return object;
     }
+    object.init = element;
+    return object;
   }
-  return true;
+  let obj = {isInOrder:true,init : numbers[0]}
+  numbers.reduce(isInOrder,obj);
+  return obj.isInOrder;
 }
-
 
 //..............checkingDescendingOrder..............//
 const isDescendingOrder = function(source){ 
