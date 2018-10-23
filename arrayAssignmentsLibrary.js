@@ -25,7 +25,7 @@ const findLength = function(source){
   return source.length;
 }
 
-const convertStrings = function (number) {
+const convertIntoNumber = function (number)  { 
   return +number;
 }
 
@@ -34,40 +34,59 @@ const reverse = function (array,number) {
   return array;
 }
 
-const isIndexEven = function(object,number){
-  if(object.index % 2 == 0){
-    object.element.push(number);
+const isIndexEven = function(state,number){
+  if(state.index % 2 == 0){
+    state.element.push(number);
   }
-  object.index++;
-  return object;
+  state.index++;
+  return state;
 }
 
-const isGreater = function(a,b){
-  return a>b;
+const isGreater = function(firstNumber,secondNumber){
+  return firstNumber > secondNumber;
 }
 
-const islesser = function(a,b){
-  return a<b;
+const isLesser = function(firstNumber,secondNumber){
+  return firstNumber < secondNumber;
 }
 
-const isInOrder = function (object,element) {
-  checkNumber = object.check;
-  if(checkNumber(object.init,element)){
-    object.isInOrder = false;
-    return object;
+const isInOrder = function (state,element) {
+  let  checkNumber = state.check;
+  if(checkNumber(state.init,element)){
+    state.result = false;
+    return state;
   }
-  object.init = element;
-  return object;
+  state.init = element;
+  return state;
 }
 
 const matchNumber  = function(object,element){
   let {number,index} = object;
-  if(element == number){
-    object.result = object.index;
-    return object;
-  }
+  if(!object.isNumberMatched){
+    if(element == number){
+     object.result = object.index;
+     object.isNumberMatched = true;
+      return object;
+    }
   object.index++;
+  }
   return object;
+}
+
+const isSubset = function (state,element) {
+  if(! state.array.includes(element)){
+    state.result = false;
+    return state;
+  }
+  return state;
+}
+
+const findUnique = function (uniqueElements,element) {
+  if(uniqueElements.includes(element)){
+    return uniqueElements;
+  }
+  uniqueElements.push(element);
+  return uniqueElements;
 }
 
 //..............findingEvenNumbers..............//
@@ -87,9 +106,9 @@ const addNumbers = function(numbers){
 
 //..............extractingAlternateNumbers..............//
 const extractAlternateNumbers = function(numbers) {
-  let object = {index:0,element:[]};
-  numbers.reduce(isIndexEven,object);
-  return object.element;
+  let initial = {index:0,element:[]};
+  numbers.reduce(isIndexEven,initial);
+  return initial.element;
 }
 
 //..........greatestNumberInAList...............//
@@ -121,7 +140,7 @@ const countEvenNumbers = function (numbers){
 const countOddNumbers = function (numbers){
   return numbers.filter(isOdd).length;
 }
-  
+
 //..........countNumbersAboveAThreshold.............//
 const countNumbersAbove = function(source,threshold){
   const filterNumbersAboveThreshold = function (number){
@@ -140,7 +159,7 @@ const countNumbersBelow = function(source,threshold){
 
 //...............indexOfANumber................//
 const findIndex = function(source,specifiedNumber){
-  let obj = {number:specifiedNumber,index:0,result:-1};
+  let obj = {number:specifiedNumber,index:0,result:-1,isNumberMached : false};
   source.reduce(matchNumber,obj);
   return obj.result;
 }
@@ -148,7 +167,7 @@ const findIndex = function(source,specifiedNumber){
 //...........extractingDigitsFromANumber.............//
 const extractDigits = function(number) {
   let source = number.toString().split("");
-  return source.map(convertStrings);
+  return source.map(convertIntoNumber);
 }
 
 //..............reversingArray..............//
@@ -158,98 +177,81 @@ const reverseArray = function(numbers) {
 
 //..............checkingAscendingOrder..............//
 const isAscendingOrder = function (numbers) {
-  let obj = {check:isGreater,isInOrder:true,init : numbers[0]}
+  let obj = {check:isGreater,result:true,init : numbers[0]}
   numbers.reduce(isInOrder,obj);
-  return obj.isInOrder;
+  return obj.result;
 }
 
 //..............checkingDescendingOrder..............//
 const isDescendingOrder = function(numbers){ 
-  let obj = {check:islesser,isInOrder:true,init : numbers[0]}
+  let obj = {check:isLesser,result:true,init : numbers[0]}
   numbers.reduce(isInOrder,obj);
-  return obj.isInOrder;
+  return obj.result;
 }
 
 //............uniqueElements..............//
 const extractUniqueElements = function(elements){
-  const findUnique = function (uniqueElements,element) {
-    if(uniqueElements.includes(element)){
-      return uniqueElements;
-    }
-    uniqueElements.push(element);
-    return uniqueElements;
-  }
   return elements.reduce(findUnique,[]);
 }
 
 //..........unionOfElements.............//
-const unionOfElements = function(array1,array2){
-  concatArrays = array1.concat(array2);
+const unionOfSets = function(set1,set2){
+  let concatArrays = set1.concat(set2);
   return extractUniqueElements(concatArrays);
 }
 
 //..........intersectionOfElements.........//
-const intersectionOfElements = function(array1,array2){
-  const findCommonElements = function(object,element){
-    if(object.array.includes(element)){
-      object.intersection.push(element);
+const intersectionOfSets = function(set1,set2){
+  const findCommonElements = function(result,element){
+    if(result.array.includes(element)){
+      result.intersection.push(element);
     }
-    return object;
+    return result;
   }
-  let object = {array:array1,intersection:[]};
-  array2.reduce(findCommonElements,object);
-  return object.intersection;
+  let initial = {array:set1,intersection:[]};
+  set2.reduce(findCommonElements,initial);
+  return initial.intersection;
 }
 
 //................difference..............//
-const findDifference = function(array1,array2){
-  const difference = function (object,element) {
-    if(!object.array.includes(element)){
-      object.difference.push(element);
-      return object;
+const findDifference = function(set1,set2){
+  const difference = function (result,element) {
+    if(!result.array.includes(element)){
+      result.difference.push(element);
+      return result;
     }
-    return object;
+    return result;
   }
-  let object = {array:array2,difference:[]}
-  array1.reduce(difference,object);
-  return object.difference;
+  let  initial = {array:set2,difference:[]}
+  set1.reduce(difference,initial);
+  return initial.difference;
 }
 
 //.............isSubset..............//
-const checkSubset = function(array1,array2){
-  const isSubset = function (object,element) {
-    if(! object.array.includes(element)){
-      object.result = false;
-      return object;
-    }
-    return object;
-  }
-  let object = {array:array1,result:true};
-  array2.reduce(isSubset,object);
-  return object.result;
+const checkSubset = function(set1,set2){
+  let initial = {array:set1,result:true};
+  set2.reduce(isSubset,initial);
+  return initial.result;
 }
 
 //............zip................//
-const findSmallerLength = function(array1,array2){
-  if(array1.length <= array2.length) {
-    return array1.length;
-  }
-  return array2.length;
+const findSmallerLength = function(set1,set2){
+  return Math.min(set2.length,set1.length);
 }
 
-const generateZipArray = function(array1,array2){
+const generateZipArray = function(set1,set2){
   let zippedArray = [];
-  smallerLength = findSmallerLength(array1,array2);
+  smallerLength = findSmallerLength(set1,set2);
   for (let index = 0; index < smallerLength; index++) {
     zippedArray[index] = [];
-    zippedArray[index].push(array1[index],array2[index]);
+    zippedArray[index].push(set1[index],set2[index]);
   }
   return zippedArray;
 }
 
 //..............partitionOfNumbers...............//
 const partitionOfArray = function(source,threshold){
-  const dividor = function (array,element) {
+  const partitioner = function (array,element) {
     if(element <= threshold){
       array[0].push(element);
       return array;
@@ -257,7 +259,7 @@ const partitionOfArray = function(source,threshold){
     array[1].push(element);
     return array;
   }
-  return source.reduce(dividor,[[],[]]);
+  return source.reduce(partitioner,[[],[]]);
 }
 
 //............rotateNumbers................//
@@ -300,12 +302,12 @@ exports.countNumbersBelow = countNumbersBelow;
 exports.findIndex = findIndex;
 exports.extractDigits = extractDigits;
 exports.reverseArray = reverseArray;
-exports.reversedFibonacciSeries = reverseFibonacciSeries;
+exports.reverseFibonacciSeries = reverseFibonacciSeries;
 exports.isAscendingOrder = isAscendingOrder;
 exports.isDescendingOrder = isDescendingOrder;
 exports.extractUniqueElements = extractUniqueElements;
-exports.unionOfElements = unionOfElements;
-exports.intersectionOfElements = intersectionOfElements;
+exports.unionOfSets = unionOfSets;
+exports.intersectionOfSets = intersectionOfSets;
 exports.findDifference = findDifference;
 exports.checkSubset = checkSubset;
 exports.generateZipArray = generateZipArray;
