@@ -60,17 +60,17 @@ const isInOrder = function (state,element) {
   return state;
 }
 
-const matchNumber  = function(object,element){
-  let {number,index} = object;
-  if(!object.isNumberMatched){
+const matchNumber  = function(state,element){
+  let {number,index} = state;
+  if(!state.isNumberMatched){
     if(element == number){
-     object.result = object.index;
-     object.isNumberMatched = true;
-      return object;
+     state.result = state.index;
+     state.isNumberMatched = true;
+      return state;
     }
-  object.index++;
+  state.index++;
   }
-  return object;
+  return state;
 }
 
 const isSubset = function (state,element) {
@@ -159,9 +159,9 @@ const countNumbersBelow = function(source,threshold){
 
 //...............indexOfANumber................//
 const findIndex = function(source,specifiedNumber){
-  let obj = {number:specifiedNumber,index:0,result:-1,isNumberMached : false};
-  source.reduce(matchNumber,obj);
-  return obj.result;
+  let initial = {number:specifiedNumber,index:0,result:-1,isNumberMached : false};
+  source.reduce(matchNumber,initial);
+  return initial.result;
 }
 
 //...........extractingDigitsFromANumber.............//
@@ -177,16 +177,16 @@ const reverseArray = function(numbers) {
 
 //..............checkingAscendingOrder..............//
 const isAscendingOrder = function (numbers) {
-  let obj = {check:isGreater,result:true,init : numbers[0]}
-  numbers.reduce(isInOrder,obj);
-  return obj.result;
+  let initial = {check:isGreater,result:true,init : numbers[0]}
+  numbers.reduce(isInOrder,initial);
+  return initial.result;
 }
 
 //..............checkingDescendingOrder..............//
 const isDescendingOrder = function(numbers){ 
-  let obj = {check:isLesser,result:true,init : numbers[0]}
-  numbers.reduce(isInOrder,obj);
-  return obj.result;
+  let initial = {check:isLesser,result:true,init : numbers[0]}
+  numbers.reduce(isInOrder,initial);
+  return initial.result;
 }
 
 //............uniqueElements..............//
