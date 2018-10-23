@@ -217,14 +217,17 @@ const findDifference = function(array1,array2){
 
 //.............isSubset..............//
 const checkSubset = function(array1,array2){
-  for(let index = 0; index < array2.length; index++){
-    if(! array1.includes(array2[index])){
-      return false;
+  const isSubset = function (object,element) {
+    if(! object.array.includes(element)){
+      object.result = false;
+      return object;
     }
-  }
-  return true;
+  return object;
 }
-
+let object = {array:array1,result:true};
+ array2.reduce(isSubset,object);
+return object.result;
+}
 //............zip................//
 const findSmallerLength = function(array1,array2){
   if(array1.length <= array2.length) {
@@ -244,24 +247,21 @@ const generateZipArray = function(array1,array2){
 }
 
 //..............partitionOfNumbers...............//
-const partitionOfArray = function(array,number){
-  let partitionedArray = [[],[]];
-  for (let index = 0;index < array.length;index++){
-    partitionedArray[1].push(array[index]);
-    if(array[index] <= number){
-      partitionedArray[0].push(array[index]);
-      partitionedArray[1].pop(array[index]);
+const partitionOfArray = function(source,threshold){
+  const dividor = function (array,element) {
+    if(element <= threshold){
+      array[0].push(element);
+      return array;
     }
+    array[1].push(element);
+    return array;
   }
-  return partitionedArray;
+  return source.reduce(dividor,[[],[]]);
 }
 
 //............rotateNumbers................//
 const rotateSource = function(source,limit){
-  for (let index = 0;index < limit;index++){
-    source.push(source.shift());
-  }
-  return source;
+  return  source.slice(limit,source.length).concat(source.slice(0,limit));
 }
 
 exports.extractOddNumbers = extractOddNumbers;
