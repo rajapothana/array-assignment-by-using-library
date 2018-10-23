@@ -16,19 +16,24 @@ const sum = function (num1,num2) {
 const findMaxNumber = function(num1,num2){
   return Math.max(num1,num2);
 }
+
 const findMinNumber = function(num1,num2){
   return Math.min(num1,num2);
 }
+
 const findLength = function(source){
   return source.length;
 }
+
 const convertStrings = function (number) {
   return +number;
 }
+
 const reverse = function (array,number) {
   array.unshift(number);
   return array;
 }
+
 const isIndexEven = function(object,number){
   if(object.index % 2 == 0){
     object.element.push(number);
@@ -40,9 +45,11 @@ const isIndexEven = function(object,number){
 const isGreater = function(a,b){
   return a>b;
 }
+
 const islesser = function(a,b){
   return a<b;
 }
+
 const isInOrder = function (object,element) {
   checkNumber = object.check;
   if(checkNumber(object.init,element)){
@@ -52,24 +59,39 @@ const isInOrder = function (object,element) {
   object.init = element;
   return object;
 }
+
+const matchNumber  = function(object,element){
+  let {number,index} = object;
+  if(element == number){
+    object.result = object.index;
+    return object;
+  }
+  object.index++;
+  return object;
+}
+
 //..............findingEvenNumbers..............//
 const extractEvenNumbers = function(numbers){
   return numbers.filter(isEven);
 }
+
 //..............findingOddNumbers..............//
 const extractOddNumbers = function(numbers) { 
   return numbers.filter(isOdd);
 }
+
 //..............findingSumOfNumbers..............//
 const addNumbers = function(numbers){
   return numbers.reduce(sum,0);
 }
+
 //..............extractingAlternateNumbers..............//
 const extractAlternateNumbers = function(numbers) {
   let object = {index:0,element:[]};
   numbers.reduce(isIndexEven,object);
   return object.element;
 }
+
 //..........greatestNumberInAList...............//
 const findGreatestNumber = function(numbers){
   return numbers.reduce(findMaxNumber,0);
@@ -84,18 +106,22 @@ const findSmallestNumber = function(numbers){
 const calculateAverage = function(numbers){
   return (numbers.reduce(sum) / numbers.length);
 }
+
 //................mapLength.................//
 const mapLength = function(source){
   return source.map(findLength);
 }
+
 //.............countEvenNumbers..............//
 const countEvenNumbers = function (numbers){
   return numbers.filter(isEven).length;
 }
+
 //..............countOddNumbers.............//
 const countOddNumbers = function (numbers){
   return numbers.filter(isOdd).length;
 }
+  
 //..........countNumbersAboveAThreshold.............//
 const countNumbersAbove = function(source,threshold){
   const filterNumbersAboveThreshold = function (number){
@@ -103,6 +129,7 @@ const countNumbersAbove = function(source,threshold){
   }
   return source.filter(filterNumbersAboveThreshold).length;
 }
+
 //..........countNumbersBelowAThreshold.............//
 const countNumbersBelow = function(source,threshold){
   const filterNumbersBelowThreshold = function (number){
@@ -110,21 +137,14 @@ const countNumbersBelow = function(source,threshold){
   }
   return source.filter(filterNumbersBelowThreshold).length;
 }
+
 //...............indexOfANumber................//
 const findIndex = function(source,specifiedNumber){
-  const matchNumber  = function(object,element){
-    let {number,index} = object;
-    if(element == number){
-      object.result = object.index;
-      return object;
-    }
-    object.index++;
-    return object;
-  }
   let obj = {number:specifiedNumber,index:0,result:-1};
   source.reduce(matchNumber,obj);
   return obj.result;
 }
+
 //...........extractingDigitsFromANumber.............//
 const extractDigits = function(number) {
   let source = number.toString().split("");
@@ -134,26 +154,6 @@ const extractDigits = function(number) {
 //..............reversingArray..............//
 const reverseArray = function(numbers) { 
   return numbers.reduce(reverse,[]);
-}
-
-//..............reversingFibonacciSeries..............//
-const generateFibonacciSeries = function(limit){
-  let firstNumber = 0;
-  let secondNumber = 1;
-  let sum = 0;
-  let fibonacciSeries = [];
-  for(let index = 0;index < limit;index++){
-    sum = (firstNumber + secondNumber)
-    fibonacciSeries.push(firstNumber);
-    firstNumber = secondNumber;
-    secondNumber = sum;
-  }
-  return fibonacciSeries;
-}
-
-const reverseFibonacciSeries = function(limit){
-  fibonacciSeries = generateFibonacciSeries(limit)
-  return reverseArray(fibonacciSeries);
 }
 
 //..............checkingAscendingOrder..............//
@@ -222,12 +222,13 @@ const checkSubset = function(array1,array2){
       object.result = false;
       return object;
     }
-  return object;
+    return object;
+  }
+  let object = {array:array1,result:true};
+  array2.reduce(isSubset,object);
+  return object.result;
 }
-let object = {array:array1,result:true};
- array2.reduce(isSubset,object);
-return object.result;
-}
+
 //............zip................//
 const findSmallerLength = function(array1,array2){
   if(array1.length <= array2.length) {
@@ -263,6 +264,26 @@ const partitionOfArray = function(source,threshold){
 const rotateSource = function(source,limit){
   return  source.slice(limit,source.length).concat(source.slice(0,limit));
 }
+//..............reversingFibonacciSeries..............//
+const generateFibonacciSeries = function(limit){
+  let firstNumber = 0;
+  let secondNumber = 1;
+  let sum = 0;
+  let fibonacciSeries = [];
+  for(let index = 0;index < limit;index++){
+    sum = (firstNumber + secondNumber)
+    fibonacciSeries.push(firstNumber);
+    firstNumber = secondNumber;
+    secondNumber = sum;
+  }
+  return fibonacciSeries;
+}
+
+const reverseFibonacciSeries = function(limit){
+  fibonacciSeries = generateFibonacciSeries(limit)
+  return reverseArray(fibonacciSeries);
+}
+
 
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
