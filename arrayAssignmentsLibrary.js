@@ -25,17 +25,17 @@ const findLength = function(source){
   return source.length;
 }
 
-const convertIntoNumber = function (number)  { 
-  return +number;
+const convertIntoNumber = function (string)  { 
+  return +string;
 }
 
-const reverse = function (array,number) {
+const insertNumber = function (array,number) {
   array.unshift(number);
   return array;
 }
 
 const isIndexEven = function(state,number){
-  if(state.index % 2 == 0){
+  if(isEven(state.index)){
     state.element.push(number);
   }
   state.index++;
@@ -50,7 +50,7 @@ const isLesser = function(firstNumber,secondNumber){
   return firstNumber < secondNumber;
 }
 
-const isInOrder = function (state,element) {
+const checkOrder = function (state,element) {
   let  checkNumber = state.check;
   if(checkNumber(state.init,element)){
     state.result = false;
@@ -60,7 +60,7 @@ const isInOrder = function (state,element) {
   return state;
 }
 
-const matchNumber  = function(state,element){
+const matchElement  = function(state,element){
   let {number,index} = state;
   if(!state.isNumberMatched){
     if(element == number){
@@ -73,7 +73,7 @@ const matchNumber  = function(state,element){
   return state;
 }
 
-const isSubset = function (state,element) {
+const checkSubset = function (state,element) {
   if(! state.array.includes(element)){
     state.result = false;
     return state;
@@ -159,8 +159,8 @@ const countNumbersBelow = function(source,threshold){
 
 //...............indexOfANumber................//
 const findIndex = function(source,specifiedNumber){
-  let initial = {number:specifiedNumber,index:0,result:-1,isNumberMached : false};
-  source.reduce(matchNumber,initial);
+  let initial = {number:specifiedNumber,index:0,result:-1,isNumberMatched : false};
+  source.reduce(matchElement,initial);
   return initial.result;
 }
 
@@ -171,24 +171,23 @@ const extractDigits = function(number) {
 }
 
 //..............reversingArray..............//
-const reverseArray = function(numbers) { 
-  return numbers.reduce(reverse,[]);
+const reverseSource = function(numbers) { 
+  return numbers.reduce(insertNumber,[]);
 }
 
 //..............checkingAscendingOrder..............//
 const isAscendingOrder = function (numbers) {
   let initial = {check:isGreater,result:true,init : numbers[0]}
-  numbers.reduce(isInOrder,initial);
+  numbers.reduce(checkOrder,initial);
   return initial.result;
 }
 
 //..............checkingDescendingOrder..............//
 const isDescendingOrder = function(numbers){ 
   let initial = {check:isLesser,result:true,init : numbers[0]}
-  numbers.reduce(isInOrder,initial);
+  numbers.reduce(checkOrder,initial);
   return initial.result;
 }
-
 //............uniqueElements..............//
 const extractUniqueElements = function(elements){
   return elements.reduce(findUnique,[]);
@@ -228,25 +227,10 @@ const findDifference = function(set1,set2){
 }
 
 //.............isSubset..............//
-const checkSubset = function(set1,set2){
+const isSubset = function(set1,set2){
   let initial = {array:set1,result:true};
-  set2.reduce(isSubset,initial);
+  set2.reduce(checkSubset,initial);
   return initial.result;
-}
-
-//............zip................//
-const findSmallerLength = function(set1,set2){
-  return Math.min(set2.length,set1.length);
-}
-
-const generateZipArray = function(set1,set2){
-  let zippedArray = [];
-  smallerLength = findSmallerLength(set1,set2);
-  for (let index = 0; index < smallerLength; index++) {
-    zippedArray[index] = [];
-    zippedArray[index].push(set1[index],set2[index]);
-  }
-  return zippedArray;
 }
 
 //..............partitionOfNumbers...............//
@@ -266,6 +250,17 @@ const partitionOfArray = function(source,threshold){
 const rotateSource = function(source,limit){
   return  source.slice(limit,source.length).concat(source.slice(0,limit));
 }
+
+//............zip................//
+const generateZipArray = function(set1,set2){
+  let zippedArray = [];
+  let smallerLength =  Math.min(set2.length,set1.length);
+  for (let index = 0; index < smallerLength; index++) {
+    zippedArray.push([set1[index],set2[index]]);
+  }
+  return zippedArray;
+}
+
 //..............reversingFibonacciSeries..............//
 const generateFibonacciSeries = function(limit){
   let firstNumber = 0;
@@ -283,9 +278,8 @@ const generateFibonacciSeries = function(limit){
 
 const reverseFibonacciSeries = function(limit){
   fibonacciSeries = generateFibonacciSeries(limit)
-  return reverseArray(fibonacciSeries);
+  return reverseSource(fibonacciSeries);
 }
-
 
 exports.extractOddNumbers = extractOddNumbers;
 exports.extractEvenNumbers = extractEvenNumbers;
@@ -301,7 +295,7 @@ exports.countNumbersAbove = countNumbersAbove;
 exports.countNumbersBelow = countNumbersBelow;
 exports.findIndex = findIndex;
 exports.extractDigits = extractDigits;
-exports.reverseArray = reverseArray;
+exports.reverseSource = reverseSource;
 exports.reverseFibonacciSeries = reverseFibonacciSeries;
 exports.isAscendingOrder = isAscendingOrder;
 exports.isDescendingOrder = isDescendingOrder;
@@ -309,7 +303,7 @@ exports.extractUniqueElements = extractUniqueElements;
 exports.unionOfSets = unionOfSets;
 exports.intersectionOfSets = intersectionOfSets;
 exports.findDifference = findDifference;
-exports.checkSubset = checkSubset;
+exports.isSubset = isSubset;
 exports.generateZipArray = generateZipArray;
 exports.rotateSource = rotateSource;
 exports.partitionOfArray = partitionOfArray;
