@@ -1,6 +1,3 @@
-// extractEvenNumbers and extractOddNumbers have lot of duplication. create a new function that reduces that duplication. 
-// that does not mean ywo have only 1 function. it means you have 3 functions. but no duplication. 
-// first you can use if-else. then you'll get rid of them. 
 const isEven = function(number) {
   return (number % 2 == 0);
 }
@@ -25,22 +22,6 @@ const findLength = function(source){
   return source.length;
 }
 
-const convertIntoNumber = function (string)  { 
-  return +string;
-}
-
-const insertNumber = function (array,number) {
-  array.unshift(number);
-  return array;
-}
-
-const isIndexEven = function(state,number){
-  if(isEven(state.index)){
-    state.element.push(number);
-  }
-  state.index++;
-  return state;
-}
 
 const isGreater = function(firstNumber,secondNumber){
   return firstNumber > secondNumber;
@@ -50,44 +31,18 @@ const isLesser = function(firstNumber,secondNumber){
   return firstNumber < secondNumber;
 }
 
-const checkOrder = function (state,element) {
-  let  checkNumber = state.check;
-  if(checkNumber(state.init,element)){
+const checkOrder = function (state,element) { 
+  let  checkCondition = state.check; // TODO unintituive that check is a function
+  if(checkCondition(state.initNumber,element)){ // TODO unclear that init is the number. 
     state.result = false;
     return state;
   }
-  state.init = element;
+  state.initNumber = element;
   return state;
 }
 
-const matchElement  = function(state,element){
-  let {number,index} = state;
-  if(!state.isNumberMatched){
-    if(element == number){
-     state.result = state.index;
-     state.isNumberMatched = true;
-      return state;
-    }
-  state.index++;
-  }
-  return state;
-}
 
-const checkSubset = function (state,element) {
-  if(! state.array.includes(element)){
-    state.result = false;
-    return state;
-  }
-  return state;
-}
 
-const findUnique = function (uniqueElements,element) {
-  if(uniqueElements.includes(element)){
-    return uniqueElements;
-  }
-  uniqueElements.push(element);
-  return uniqueElements;
-}
 
 //..............findingEvenNumbers..............//
 const extractEvenNumbers = function(numbers){
@@ -105,6 +60,14 @@ const addNumbers = function(numbers){
 }
 
 //..............extractingAlternateNumbers..............//
+
+const isIndexEven = function(state,number){ // TODO destructure state so that I know what state has. After that, try destructing right in the argument or name the state better
+  if(isEven(state.index)){
+    state.element.push(number);
+  }
+  state.index++;
+  return state;
+}
 const extractAlternateNumbers = function(numbers) {
   let initial = {index:0,element:[]};
   numbers.reduce(isIndexEven,initial);
@@ -158,37 +121,65 @@ const countNumbersBelow = function(source,threshold){
 }
 
 //...............indexOfANumber................//
-const findIndex = function(source,specifiedNumber){
-  let initial = {number:specifiedNumber,index:0,result:-1,isNumberMatched : false};
-  source.reduce(matchElement,initial);
-  return initial.result;
+
+const findIndex = function(dataSet,specifiedNumber){ // TODO no need to use reduce, use a filter and head 
+  let index = -1;
+  let indexCounter = 0;
+  matchNumber = function (element) {
+    if(index == -1 && element == specifiedNumber){
+      index = indexCounter;
+    }
+    indexCounter++;
+
+  }
+  dataSet.filter(matchNumber);
+  return index;
 }
 
 //...........extractingDigitsFromANumber.............//
+
+const convertIntoNumber = function (string)  { 
+  return +string;
+}
+
 const extractDigits = function(number) {
   let source = number.toString().split("");
   return source.map(convertIntoNumber);
 }
 
 //..............reversingArray..............//
+
+const beforeSelector = function (array,number) { // TODO insert number where?
+  array.unshift(number);
+  return array;
+}
 const reverseSource = function(numbers) { 
-  return numbers.reduce(insertNumber,[]);
+  return numbers.reduce(beforeSelector,[]);
 }
 
 //..............checkingAscendingOrder..............//
 const isAscendingOrder = function (numbers) {
-  let initial = {check:isGreater,result:true,init : numbers[0]}
+  let initial = {check:isGreater,result:true,initNumber : numbers[0]}
   numbers.reduce(checkOrder,initial);
   return initial.result;
 }
 
 //..............checkingDescendingOrder..............//
 const isDescendingOrder = function(numbers){ 
-  let initial = {check:isLesser,result:true,init : numbers[0]}
+  let initial = {check:isLesser,result:true,initNumber : numbers[0]}
   numbers.reduce(checkOrder,initial);
   return initial.result;
 }
 //............uniqueElements..............//
+
+const findUnique = function (uniqueElements,element) {
+  if(uniqueElements.includes(element)){
+    return uniqueElements;
+  }
+  uniqueElements.push(element);
+  return uniqueElements;
+}
+
 const extractUniqueElements = function(elements){
   return elements.reduce(findUnique,[]);
 }
@@ -227,9 +218,18 @@ const findDifference = function(set1,set2){
 }
 
 //.............isSubset..............//
+// TODO - create a function which captures set (i.e state.array into its closure and then returns another function that checksSubset. use currying.
+const checkSubset = function (state,element) {
+  if(! state.array.includes(element)){
+    state.result = false;
+    return state;
+  }
+  return state;
+}
+
 const isSubset = function(set1,set2){
   let initial = {array:set1,result:true};
-  set2.reduce(checkSubset,initial);
+  set2.reduce(checkSubset,initial); // TODO - should work like checkSubset(set1) 
   return initial.result;
 }
 
